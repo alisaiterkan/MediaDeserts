@@ -1,5 +1,5 @@
 <? 
-include_once("/home/mediadeserts/mediadeserts.bodkin.me/secure/connection.php");
+include_once("/home/mediadeserts/secure/connection.php");
  ?>
 <!DOCTYPE html>
 <html>
