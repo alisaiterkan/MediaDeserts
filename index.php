@@ -13,10 +13,9 @@ include_once("http://mediadeserts.bodkin.me/secure/connection.php");
     <title>Media Deserts</title>
     <link href='http://fonts.googleapis.com/css?family=Bevan' rel='stylesheet' type='text/css'>
     <link href="style.css" rel="stylesheet">
-	<link href="ui-theme/jquery-ui-1.10.0.custom.css" rel="stylesheet">
-	<link href="js-plugins/jquery-multipleselect.css" rel="stylesheet">
-	<link href="js-plugins/jquery-multipleselect.css" rel="stylesheet">
-	<link href="js-plugins/shadowbox/shadowbox.css" rel="stylesheet">
+	<link href="scripts/ui-theme/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+	<link href="scripts/jquery-multipleselect.css" rel="stylesheet">
+	<link href="scripts/shadowbox/shadowbox.css" rel="stylesheet">
   </head>
   <body>
   <div id="page-wrapper" class="body row scroll-y">
@@ -149,12 +148,12 @@ include_once("http://mediadeserts.bodkin.me/secure/connection.php");
 
   </div>
 
-    <script src="jquery.js"></script>
-    <script src="jqueryui.js"></script>
-    <script src="js-plugins/jquery-multipleselect.js"></script>
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/jqueryui.js"></script>
+    <script src="scripts/jquery-multipleselect.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqhj4sutTn567eZrFQs1hVJUMXsF7gWLI&sensor=true"></script>
-    <script src="js-plugins/shadowbox/shadowbox.js"></script>
-    <script src="script.js"></script>
+    <script src="scripts/shadowbox/shadowbox.js"></script>
+    <script src="scripts/script.js"></script>
     
   </body>
 </html>
