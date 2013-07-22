@@ -12,7 +12,7 @@ include_once("/home/mediadeserts/mediadeserts.bodkin.me/secure/connection.php");
     <meta charset="utf-8">
     <title>Media Deserts</title>
     <link href='http://fonts.googleapis.com/css?family=Bevan' rel='stylesheet' type='text/css'>
-    <link href="style.css" rel="stylesheet">
+    <link href="styles/main.css" rel="stylesheet">
 	<link href="scripts/ui-theme/jquery-ui-1.10.0.custom.css" rel="stylesheet">
 	<link href="scripts/jquery-multipleselect.css" rel="stylesheet">
 	<link href="scripts/shadowbox/shadowbox.css" rel="stylesheet">
