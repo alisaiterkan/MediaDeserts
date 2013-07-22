@@ -1,7 +1,7 @@
 <? 
 
 
-include_once("http://mediadeserts.bodkin.me/secure/connection.php");
+include_once("/home/mediadeserts/mediadeserts.bodkin.me/secure/connection.php");
 
 
  ?>
