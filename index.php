@@ -145,7 +145,7 @@ include_once("/home/mediadeserts/secure/connection.php");
   </div>
 
     <script src="scripts/jquery.js"></script>
-    <script src="scripts/jqueryui.js"></script>
+    <script src="scripts/jquery-ui.js"></script>
     <script src="scripts/jquery-multipleselect.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqhj4sutTn567eZrFQs1hVJUMXsF7gWLI&sensor=true"></script>
     <script src="scripts/shadowbox/shadowbox.js"></script>
