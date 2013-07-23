@@ -176,7 +176,7 @@ foreach ($states as $abbrv => &$fullname) {
 				  	  	</ul>
 			  	  	</li>			  	  
 			  	  </ul>
-			  	  -->
+		  	  -->
 		  	  </div>
 		  	  <div id="footerInfo">
 		  	  <div id="scale" class="cf">
