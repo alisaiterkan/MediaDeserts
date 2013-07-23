@@ -26,7 +26,68 @@ include_once("/home/mediadeserts/secure/connection.php");
 			  	<div class="col col8">
 			  	</div>
 			  	<div class="col col8">
-			  	</div>
+			  	<label for="states">States</label>
+				  	<select name="states" id="states-selector" multiple>
+					  	<?
+$states = array(
+	'AL'=>'Alabama',
+	'AK'=>'Alaska',
+	'AZ'=>'Arizona',
+	'AR'=>'Arkansas',
+	'CA'=>'California',
+	'CO'=>'Colorado',
+	'CT'=>'Connecticut',
+	'DE'=>'Delaware',
+	'DC'=>'District of Columbia',
+	'FL'=>'Florida',
+	'GA'=>'Georgia',
+	'HI'=>'Hawaii',
+	'ID'=>'Idaho',
+	'IL'=>'Illinois',
+	'IN'=>'Indiana',
+	'IA'=>'Iowa',
+	'KS'=>'Kansas',
+	'KY'=>'Kentucky',
+	'LA'=>'Louisiana',
+	'ME'=>'Maine',
+	'MD'=>'Maryland',
+	'MA'=>'Massachusetts',
+	'MI'=>'Michigan',
+	'MN'=>'Minnesota',
+	'MS'=>'Mississippi',
+	'MO'=>'Missouri',
+	'MT'=>'Montana',
+	'NE'=>'Nebraska',
+	'NV'=>'Nevada',
+	'NH'=>'New Hampshire',
+	'NJ'=>'New Jersey',
+	'NM'=>'New Mexico',
+	'NY'=>'New York',
+	'NC'=>'North Carolina',
+	'ND'=>'North Dakota',
+	'OH'=>'Ohio',
+	'OK'=>'Oklahoma',
+	'OR'=>'Oregon',
+	'PA'=>'Pennsylvania',
+	'RI'=>'Rhode Island',
+	'SC'=>'South Carolina',
+	'SD'=>'South Dakota',
+	'TN'=>'Tennessee',
+	'TX'=>'Texas',
+	'UT'=>'Utah',
+	'VT'=>'Vermont',
+	'VA'=>'Virginia',
+	'WA'=>'Washington',
+	'WV'=>'West Virginia',
+	'WI'=>'Wisconsin',
+	'WY'=>'Wyoming',
+);
+foreach ($states as $abbrv => &$fullname) {
+	echo "<option value='" . $abbrv . "' selected>". $fullname ."</option>";	
+
+}					  	?>
+					</select>
+				</div>
 			  	<div class="col col8">
 			  	<label for="publications">Publications</label>
 				  	<select name="publications" id="publications-selector" multiple>
@@ -35,7 +96,7 @@ include_once("/home/mediadeserts/secure/connection.php");
 					  	while($row = mysqli_fetch_array($newspaperTypes))
 						  {
 							  echo "<optgroup label='". $row['type'] ."'>";
-					  	$newspapers = mysqli_query($con,"SELECT * FROM newspapers;");
+					  	$newspapers = mysqli_query($con,"SELECT * FROM newspapers WHERE type ='" . $row['type'] . "';";);
 
 					  	while($row = mysqli_fetch_array($newspapers))
 						  {

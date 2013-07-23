@@ -3,14 +3,6 @@ include_once("/home/mediadeserts/secure/connection.php");
 
   function setColor($percent, $invert = false)
 {
-    //$percent is in the range 0.0 <= percent <= 1.0
-    //    integers are assumed to be 0% - 100%
-             // and are converted to a float 0.0 - 1.0
-    //     0.0 = red, 0.5 = yellow, 1.0 = green
-    //$invert will make the color scale reversed
-    //     0.0 = green, 0.5 = yellow, 1.0 = red 
-    
-    //convert (int)% values to (float)
     
     $R = min((2.0 * (1.0-$percent)), 1.0) * 255.0;
     $G = min((2.0 * $percent), 1.0) * 255.0;
@@ -61,17 +53,7 @@ echo "<fridayCirculation>". intval($newspapers['fridayCirculation']) ."</fridayC
 echo "<saturdayCirculation>". intval($newspapers['saturdayCirculation']) ."</saturdayCirculation>";					
 echo "<sundayCirculation>". intval($newspapers['sundayCirculation']) ."</sundayCirculation>";					
 echo "<combinedSundayCirculation>". intval($newspapers['combinedSundayCirculation']) ."</combinedSundayCirculation>";
-			if(!isset($newspapers['combinedSundayCirculation'])) { 		
-$from = $zipcode;
-$to = htmlspecialchars($newspapers['headquarters']) . ", " . htmlspecialchars($newspapers['hqState']);
 
-$from = urlencode($from);
-$to = urlencode($to);
-
-$data = file_get_contents("http://maps.googleapis.com/maps/api/distancematrix/json?origins=$from&destinations=$to&units=imperial&sensor=false");
-
-echo "<distance>". intval($data['rows']['elements']['distance']['value']) ."</distance>";
-}
 if(intval($newspapers['occupiedHomes']) != 0) {
 	if(intval($newspapers['sundayCirculation']) != 0) {
 		$sundayCirculationPercent[$i] = intval($newspapers['sundayCirculation']) / intval($newspapers['occupiedHomes']);
