@@ -13,7 +13,8 @@ $("#publications-selector").multiselect({
 }).multiselectfilter();
 $("#states-selector").multiselect({
 	selectedText: "# of # selected",
-	minWidth: 'auto'
+	minWidth: 'auto',
+	multiple: false
 }).multiselectfilter();
 // function initialize is loaded towards the bottom on window load with this line:
 
