@@ -96,7 +96,7 @@ foreach ($states as $abbrv => &$fullname) {
 					  	while($row = mysqli_fetch_array($newspaperTypes))
 						  {
 							  echo "<optgroup label='". $row['type'] ."'>";
-					  	$newspapers = mysqli_query($con,"SELECT * FROM newspapers WHERE type ='" . $row['type'] . "';";);
+					  	$newspapers = mysqli_query($con,"SELECT * FROM newspapers WHERE type ='" . $row['type'] . "';");
 
 					  	while($row = mysqli_fetch_array($newspapers))
 						  {
