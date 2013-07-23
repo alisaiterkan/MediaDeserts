@@ -213,11 +213,13 @@ foreach ($states as $abbrv => &$fullname) {
     <script src="scripts/script.js"></script>
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 	<script>
+/*
 	$(document).ready(function() {
 		region = google.loader.ClientLocation.address.region
 
     $("#state-selector option[value='"+ region +"']").attr('selected', 'selected');
 });
+*/
 	</script>
 
   </body>
