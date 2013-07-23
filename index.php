@@ -153,9 +153,17 @@ foreach ($states as $abbrv => &$fullname) {
 		  	  <div id="sidebar" class="hidden">
 			  	  
 			  	  <ul>
-			  	  	<li>
+			  	  	<li class='newspaper-report'>
 				  	  	<h2>Newspaper Name #1</h2>
-				  	  	<ul>
+						<table>
+							<tr>
+								<td>Mon</td><td>Tues</td>
+							</tr>
+							<tr>
+								<td>25%</td><td>33%</td>
+							</tr>
+						</table>
+				  	  	<ul class='individual-report>
 					  	  	<li><span class="stats-label">Circulation Level:</span> 45%</li>
 					  	  	<li><span class="stats-label">Monday Circulation:</span> 45%</li>
 				  	  	</ul>
