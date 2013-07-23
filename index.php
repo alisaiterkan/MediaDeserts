@@ -163,7 +163,7 @@ foreach ($states as $abbrv => &$fullname) {
 								<td>25%</td><td>33%</td>
 							</tr>
 						</table>
-				  	  	<ul class='individual-report>
+				  	  	<ul class='individual-report'>
 					  	  	<li><span class="stats-label">Circulation Level:</span> 45%</li>
 					  	  	<li><span class="stats-label">Monday Circulation:</span> 45%</li>
 				  	  	</ul>
