@@ -1,4 +1,6 @@
 <?
+// Borno says hi
+
 include_once("/home/mediadeserts/secure/connection.php");
 
   function setColor($percent, $invert = false)
