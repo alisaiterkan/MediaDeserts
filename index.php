@@ -151,7 +151,7 @@ foreach ($states as $abbrv => &$fullname) {
 		  		
 		  	  <div id="map"></div>
 		  	  <div id="sidebar" class="hidden">
-			  	  
+			  	  <!--
 			  	  <ul>
 			  	  	<li class='newspaper-report'>
 				  	  	<h2>Newspaper Name #1</h2>
@@ -176,7 +176,7 @@ foreach ($states as $abbrv => &$fullname) {
 				  	  	</ul>
 			  	  	</li>			  	  
 			  	  </ul>
-			  	  
+			  	  -->
 		  	  </div>
 		  	  <div id="footerInfo">
 		  	  <div id="scale" class="cf">
