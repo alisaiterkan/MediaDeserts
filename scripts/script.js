@@ -99,7 +99,7 @@ function ajaxCall() {
 								}*/
 
 								i++;
-				});
+				
 				console.log(reportHTML); 
 				// if there is only one polygon for the zipcode...
 				if ($(thisRow).children('geometry').children('Polygon')) {
