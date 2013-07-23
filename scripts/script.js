@@ -91,10 +91,15 @@ function ajaxCall() {
 							 	reportData['wednesdaycirculation'] = parseInt($(this).children("wednesdaycirculation").text(), 10);
 							 	reportData['occupiedhomes'] = parseFloat($(this).children("occupiedhomes").text());
 								reportGroup.push(reportData);
-								reportHTML = reportHTML + "<h2>" + reportData['name'] + "</h2>";
-								reportHTML = reportHTML + "<ul>" + "<li>" + reportData['name'];
+								if(!reportHTML[reportData['paperid']]) {
+									reportHTML[reportData['paperid']][i] = "<h2>" + reportData['name'] + "</h2>"
+								} else {
+									reportHTML[reportData['paperid']][i] = "<h3>" + reportData['reportDate'] + "</h3>"
+								}
+
+								i++;
 				});
-				
+				console.log(reportHTML);
 				// if there is only one polygon for the zipcode...
 				if ($(thisRow).children('geometry').children('Polygon')) {
 						// var polygonOuterBoundary sets up the array to be used in the following loop
