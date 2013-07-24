@@ -57,7 +57,7 @@ if (strpos($geometry,'<MultiGeometry>') == true) {
 					array_push($json, $jsonOuter); 
 					array_push($json, $jsonInner); 
 
-		return $json;
+		return $outer;
 }
 
 if($type == "json") {
