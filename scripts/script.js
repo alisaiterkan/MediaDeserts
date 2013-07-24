@@ -62,15 +62,14 @@ function ajaxCall() {
 				// var zipcode stores the number of the zipcode from the circulation area
 				var zipcode = $(thisRow).children('zipcode').text();
 				var reportGroup = [];
+				var paperIdTracker = [];
 				//var reportsHTML = [];
 				var i = 0;
 				$(thisRow).children('reports').children('report').each(function() {
 				var reportData = {};
-				//var reportHTML = "";
+				var reportHTML = "";
 						var from = parseInt($(this).attr("from"));
 						// reportData.push($(this).text());
-								
-
 							 	reportData['zipcode'] = parseInt(zipcode, 10);
 							 	reportData['reportPeriod'] = parseInt($(this).attr("from"), 10);
 							 	reportData['reportDate'] = $(this).attr("date");
@@ -90,11 +89,11 @@ function ajaxCall() {
 							 	reportData['wednesdaycirculation'] = parseInt($(this).children("wednesdaycirculation").text(), 10);
 							 	reportData['occupiedhomes'] = parseFloat($(this).children("occupiedhomes").text());
 								reportGroup.push(reportData);
-								/*if(!reportHTML[reportData['paperid']]) {
-									reportHTML[reportData['paperid']][i] = "<h2>" + reportData['name'] + "</h2>"
-								} else {
-									reportHTML[reportData['paperid']][i] = "<h3>" + reportData['reportDate'] + "</h3>"
-								}*/
+								if(!($.inArray(reportData['paperid'], paperIdTracker)) {
+									paperIdTracker.push(reportData['paperid']);
+									reportHTML = "<h2>" + reportData['name'] + "</h2>"
+								}
+								reportHTML = "<h3>" + reportData['reportDate'] + "</h3>"
 
 								i++;
 				
