@@ -3,7 +3,7 @@
 
 include_once("/home/mediadeserts/secure/connection.php");
 
-if(isset($_GET['type']) {
+if(isset($_GET['type'])) {
 	$type = $_GET['type'];
 }
 
