@@ -89,7 +89,7 @@ function ajaxCall() {
 							 	reportData['wednesdaycirculation'] = parseInt($(this).children("wednesdaycirculation").text(), 10);
 							 	reportData['occupiedhomes'] = parseFloat($(this).children("occupiedhomes").text());
 								reportGroup.push(reportData);
-								if(!($.inArray(reportData['paperid'], paperIdTracker)) {
+								if(!($.inArray(reportData['paperid'], paperIdTracker))) {
 									paperIdTracker.push(reportData['paperid']);
 									reportHTML = "<h2>" + reportData['name'] + "</h2>"
 								}
