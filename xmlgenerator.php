@@ -70,7 +70,7 @@ while($area = mysqli_fetch_array($circulationAreaResults)) {
 	  $areaJSON = array();
 	  $areaJSON['zipcode'] = $area['zipcode'];
 	  $areaJSON['geometry'] = processGeometry($area['geometry']);
-			  
+		$zipcode = $area['zipcode'];
 						$newspaperResults = mysqli_query($con,"SELECT fromReport, reportDate, newspapers.name name, newspapers.id newspaperID, newspapers.headquarters headquarters, newspapers.state hqState, frequency, additionalDescription, occupiedHomes, combinedDaily, combinedAverage, mondayCirculation, tuesdayCirculation, wednesdayCirculation, thursdayCirculation, fridayCirculation, saturdayCirculation, sundayCirculation, combinedSundayCirculation FROM circulationAreas INNER JOIN newspapers ON circulationAreas.newspaperID = newspapers.id WHERE circulationAreas.zipcode = $zipcode");
 
 			while($newspapers = mysqli_fetch_array($newspaperResults)) {
