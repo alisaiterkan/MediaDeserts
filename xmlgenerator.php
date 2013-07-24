@@ -69,73 +69,8 @@ $json = array();
 while($area = mysqli_fetch_array($circulationAreaResults)) {
 	  $areaJSON = array();
 	  $areaJSON['zipcode'] = $area['zipcode'];
-	  $areaJSON['geometry'] = $area['geometry'];
-	  
-	  
-    	echo "var zipcoords". $row['zipcode'] ." = [[";
-
-		$geometry = $row['geometry'];
-		
-		$search = array("<Polygon><outerBoundaryIs><LinearRing><coordinates>","</coordinates></LinearRing></outerBoundaryIs></Polygon>");
-		$geometry = str_replace($search, "", $geometry);
-		
-		$parsed = get_string($geometry, "</coordinates></LinearRing></outerBoundaryIs><innerBoundaryIs><LinearRing><coordinates>", "</coordinates></LinearRing></innerBoundaryIs></Polygon>");
-		
-		$hole = $parsed;
-		
-		$hole = explode(" ", $hole);
-		
-		
-		$search = array("</coordinates></LinearRing></outerBoundaryIs><innerBoundaryIs><LinearRing><coordinates>", $parsed, "</coordinates></LinearRing></innerBoundaryIs></Polygon>");
-		$parsed = explode(" ", $parsed);
-		
-		$geometry = str_replace($search, "", $geometry);
-		
-		
-		$geometry = explode(" ", $geometry);
-		
-		
-		$i = 0;
-		
-		$len = count($geometry) - 1;
-		
-		
-		foreach($geometry as $key => $point)
-		  {
-		  
-		$point = explode(",", $point);
-		
-		  
-		        echo "new google.maps.LatLng(". $point[1] .", ". $point[0] .")"; 
-		        if($len != $i) {
-			        echo(", ");
-		        }
-		        $i++;	
-		}
-		
-		if(1 < count($hole)) {
-			echo "], [";
-			$i = 0;
-		
-			foreach($hole as $key => $point)
-		  {
-		$point = explode(",", $point);
-		
-		  
-		        echo "new google.maps.LatLng(". $point[1] .", ". $point[0] .")"; 
-		        if($len != $i) {
-			        echo(", ");
-		        }
-		        $i++;	
-		}
-		
-			
-		}
-		
-		
-		echo "]]; \n
-	  
-	  
+	  $areaJSON['geometry'] = processGeometry($area['geometry']);
+			  
 	  	  	while($area = mysqli_fetch_array($circulationAreaResults)) {
 	  	  	$newspaperJSON = array();
 
