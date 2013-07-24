@@ -46,8 +46,6 @@ console.log("mouseout");
 			});
 }
 
-
-function initialize() {
 function ajaxCall() {
 	// var zippolygon defines the array to hold all of the polygons   
 	var zippolygon = [];
@@ -219,8 +217,11 @@ function ajaxCall() {
 		});
 		$('#map').removeClass("loading");
 	});
-
+});
 }
+
+
+function initialize() {
 	// var oldZip is used for keeping tracking of the activated polygon 
 	var oldZip = null;
 	// var style defines the dark color scheme used by the map 
