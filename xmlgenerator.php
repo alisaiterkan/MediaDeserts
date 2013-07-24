@@ -3,6 +3,10 @@
 
 include_once("/home/mediadeserts/secure/connection.php");
 
+if(isset($_GET['type']) {
+	$type = $_GET['type'];
+}
+
   function setColor($percent, $invert = false)
 {
     
@@ -14,6 +18,31 @@ include_once("/home/mediadeserts/secure/connection.php");
 sprintf("%02X%02X%02X",$R,$G,$B) 
 : sprintf("%02X%02X%02X",$R,$G,$B)); 
 } //colorMeter
+
+if($type == "json") {
+	$circulationAreaResults = mysqli_query($con,"SELECT circulationAreas.zipcode, circulationAreas.occupiedHomes, sundayCirculation, combinedSundayCirculation, geometry FROM circulationAreas INNER JOIN zipcodes ON circulationAreas.zipcode = zipcodes.zipcode WHERE STATE='NC' GROUP BY zipcode ORDER BY circulationAreas.zipcode ASC;");
+
+$json = array();
+
+
+while($area = mysqli_fetch_array($circulationAreaResults)) {
+	  $areaJSON = array();
+	  $areaJSON['zipcode'] = $area['zipcode'];
+	  $areaJSON['geometry'] = $area['geometry'];
+	  
+	  	  	while($area = mysqli_fetch_array($circulationAreaResults)) {
+	  	  	$newspaperJSON = array();
+
+			  $newspaperJSON["paperName"] = htmlspecialchars($newspapers['name']);
+			  $newspaperJSON["paperID"] = intval($newspapers['newspaperID']);
+			  $$newspaperJSON["hq"] = htmlspecialchars($newspapers['headquarters']) . ", " . htmlspecialchars($newspapers['hqState']);
+			  array_push($areaJSON, $newspaperJSON);
+	  }
+			  array_push($json, $areaJSON);
+}
+ echo json_encode($json);
+
+} else {
 
   		header('Content-Type: text/xml');
 		echo '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' . "\n";
@@ -90,5 +119,5 @@ if(intval($newspapers['occupiedHomes']) != 0) {
 	}
 		echo "</response>\n";
 		exit;
-
+}
 ?>
