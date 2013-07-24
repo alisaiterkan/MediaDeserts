@@ -18,6 +18,47 @@ if(isset($_GET['type'])) {
 sprintf("%02X%02X%02X",$R,$G,$B) 
 : sprintf("%02X%02X%02X",$R,$G,$B)); 
 } //colorMeter
+function get_string($string, $start, $end){
+ $string = " ".$string;
+ $pos = strpos($string,$start);
+ if ($pos == 0) return "";
+ $pos += strlen($start);
+ $len = strpos($string,$end,$pos) - $pos;
+ return substr($string,$pos,$len);
+}
+function processGeometry($geometry) {
+/*
+if (strpos($geometry,'<MultiGeometry>') == true) {
+		$search = array("<MultiGeometry>","</MultiGeometry>");
+}
+*/
+		$json = array();
+		$jsonOuter = array();
+		$jsonInner = array();
+		
+		$outer = get_string($geometry, "<innerBoundaryIs><LinearRing><coordinates>","</coordinates></LinearRing></innerBoundaryIs>");
+		$outer = explode(" ", $outer);
+
+		$inner = get_string($geometry, "<outerBoundaryIs><LinearRing><coordinates>","</coordinates></LinearRing></outerBoundaryIs>");
+		$inner = explode(" ", $inner);
+		
+		$i = 0;
+		
+		foreach($outer as $key => $point){
+			$point = explode(",", $point);
+			array_push($jsonOuter, $point); 
+		}
+		if(1 == count($inner)) {
+			foreach($inner as $key => $point){
+				$point = explode(",", $point);
+				array_push($jsonInner, $point); 
+			}
+		}
+					array_push($json, $jsonOuter); 
+					array_push($json, $jsonInner); 
+
+		return $json;
+}
 
 if($type == "json") {
 	$circulationAreaResults = mysqli_query($con,"SELECT circulationAreas.zipcode, circulationAreas.occupiedHomes, sundayCirculation, combinedSundayCirculation, geometry FROM circulationAreas INNER JOIN zipcodes ON circulationAreas.zipcode = zipcodes.zipcode WHERE STATE='NC' GROUP BY zipcode ORDER BY circulationAreas.zipcode ASC;");
@@ -29,6 +70,71 @@ while($area = mysqli_fetch_array($circulationAreaResults)) {
 	  $areaJSON = array();
 	  $areaJSON['zipcode'] = $area['zipcode'];
 	  $areaJSON['geometry'] = $area['geometry'];
+	  
+	  
+    	echo "var zipcoords". $row['zipcode'] ." = [[";
+
+		$geometry = $row['geometry'];
+		
+		$search = array("<Polygon><outerBoundaryIs><LinearRing><coordinates>","</coordinates></LinearRing></outerBoundaryIs></Polygon>");
+		$geometry = str_replace($search, "", $geometry);
+		
+		$parsed = get_string($geometry, "</coordinates></LinearRing></outerBoundaryIs><innerBoundaryIs><LinearRing><coordinates>", "</coordinates></LinearRing></innerBoundaryIs></Polygon>");
+		
+		$hole = $parsed;
+		
+		$hole = explode(" ", $hole);
+		
+		
+		$search = array("</coordinates></LinearRing></outerBoundaryIs><innerBoundaryIs><LinearRing><coordinates>", $parsed, "</coordinates></LinearRing></innerBoundaryIs></Polygon>");
+		$parsed = explode(" ", $parsed);
+		
+		$geometry = str_replace($search, "", $geometry);
+		
+		
+		$geometry = explode(" ", $geometry);
+		
+		
+		$i = 0;
+		
+		$len = count($geometry) - 1;
+		
+		
+		foreach($geometry as $key => $point)
+		  {
+		  
+		$point = explode(",", $point);
+		
+		  
+		        echo "new google.maps.LatLng(". $point[1] .", ". $point[0] .")"; 
+		        if($len != $i) {
+			        echo(", ");
+		        }
+		        $i++;	
+		}
+		
+		if(1 < count($hole)) {
+			echo "], [";
+			$i = 0;
+		
+			foreach($hole as $key => $point)
+		  {
+		$point = explode(",", $point);
+		
+		  
+		        echo "new google.maps.LatLng(". $point[1] .", ". $point[0] .")"; 
+		        if($len != $i) {
+			        echo(", ");
+		        }
+		        $i++;	
+		}
+		
+			
+		}
+		
+		
+		echo "]]; \n
+	  
 	  
 	  	  	while($area = mysqli_fetch_array($circulationAreaResults)) {
 	  	  	$newspaperJSON = array();
