@@ -27,24 +27,26 @@ function get_string($string, $start, $end){
  return substr($string,$pos,$len);
 }
 function processGeometry($geometry) {
-/*
-if (strpos($geometry,'<MultiGeometry>') == true) {
-		$search = array("<MultiGeometry>","</MultiGeometry>");
-}
-*/
 		$json = array();
 		$jsonOuter = array();
 		$jsonInner = array();
+
+if (strpos($geometry,'<MultiGeometry>') == true) {
+		$search = array("<MultiGeometry>","</MultiGeometry>");
+		return "multiple";
+} else {
 		
-		$outer = get_string($geometry, "<innerBoundaryIs><LinearRing><coordinates>","</coordinates></LinearRing></innerBoundaryIs>");
+		$outer = get_string($geometry, "<outerBoundaryIs><LinearRing><coordinates>","</coordinates></LinearRing></outerBoundaryIs>");
 		$outer = explode(" ", $outer);
+		array_push($json, $outer); 
 
-		$inner = get_string($geometry, "<outerBoundaryIs><LinearRing><coordinates>","</coordinates></LinearRing></outerBoundaryIs>");
-		$inner = explode(" ", $inner);
-					array_push($json, $outer); 
-					array_push($json, $inner); 
-
+		$inner = get_string($geometry, "<innerBoundaryIs><LinearRing><coordinates>","</coordinates></LinearRing></innerBoundaryIs>");
+		if($inner !== null) {
+			$inner = explode(" ", $inner);
+			array_push($json, $inner); 
+		}
 		return $json;
+}
 }
 
 if($type == "json") {
