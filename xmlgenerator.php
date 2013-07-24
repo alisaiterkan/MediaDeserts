@@ -41,23 +41,10 @@ if (strpos($geometry,'<MultiGeometry>') == true) {
 
 		$inner = get_string($geometry, "<outerBoundaryIs><LinearRing><coordinates>","</coordinates></LinearRing></outerBoundaryIs>");
 		$inner = explode(" ", $inner);
-		
-		$i = 0;
-		
-		foreach($outer as $key => $point){
-			$point = explode(",", $point);
-			array_push($jsonOuter, $point); 
-		}
-		if(1 == count($inner)) {
-			foreach($inner as $key => $point){
-				$point = explode(",", $point);
-				array_push($jsonInner, $point); 
-			}
-		}
-					array_push($json, $jsonOuter); 
-					array_push($json, $jsonInner); 
+					array_push($json, $outer); 
+					array_push($json, $inner); 
 
-		return $outer;
+		return $json;
 }
 
 if($type == "json") {
