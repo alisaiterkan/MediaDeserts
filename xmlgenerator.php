@@ -5,6 +5,8 @@ include_once("/home/mediadeserts/secure/connection.php");
 
 if(isset($_GET['type'])) {
 	$type = $_GET['type'];
+} else {
+	$type = "xml";
 }
 
   function setColor($percent, $invert = false)
@@ -41,7 +43,7 @@ if (strpos($geometry,'<MultiGeometry>') == true) {
 		array_push($json, $outer); 
 
 		$inner = get_string($geometry, "<innerBoundaryIs><LinearRing><coordinates>","</coordinates></LinearRing></innerBoundaryIs>");
-		if($inner !== null) {
+		if($inner !== null || $inner !== "") {
 			$inner = explode(" ", $inner);
 			array_push($json, $inner); 
 		}
