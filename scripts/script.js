@@ -21,6 +21,14 @@ $("#states-selector").multiselect({
 $("#states-selector").change( function() {
   console.log(this.value);
   
+$.ajax({
+  type: "POST",
+  url: "xmlgenerator.php",
+  data: { state: this.value
+  }
+}).done(function( data ) {
+ajaxCall(data);
+});
 
 
 });
@@ -66,19 +74,20 @@ $(".open-link").click(function() {
 }
 
 function initialize() {
-function ajaxCall() {
+$.ajax({
+  type: "POST",
+  url: "xmlgenerator.php"
+}).done(function( data ) {
+ajaxCall(data);
+});
+function ajaxCall(data) {
 	// var zippolygon defines the array to hold all of the polygons   
 	var zippolygon = [];
 	// var zipcoords defines the array to hold all of the coordinates data   
 	var zipcoords = [];
 
 	var zipHTML = [];
-$.ajax({
-  type: "POST",
-  url: "xmlgenerator.php"
-}).done(function( data ) {
-		// when the page is loaded, it will then process the XML file  
-		$(document).ready(function() {
+
 			// LOOP for each of the circulation areas (children of the response)  
 			$(data).children('response').children('area').each(function() {
 				// var thisRow stores the circulation area data from 'this' 
@@ -250,9 +259,7 @@ $.ajax({
 				google.maps.event.addDomListener(zippolygon[zipcode], "click", function(){
 					clickPolygon(zippolygon[zipcode], zipHTML[zipcode])});
 			});
-		});
 		$('#map').removeClass("loading");
-	});
 
 }
 	// var oldZip is used for keeping tracking of the activated polygon 
