@@ -71,7 +71,7 @@ $(".open-link").click(function() {
 }
 
 function initialize() {
-function ajaxCall(state = null) {
+function ajaxCall() {
 	// var zippolygon defines the array to hold all of the polygons   
 	var zippolygon = [];
 	// var zipcoords defines the array to hold all of the coordinates data   
