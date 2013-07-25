@@ -50,7 +50,8 @@ console.log(reportHTML);
 $('#sidebar').html(reportHTML);
 $("a").click(function() {
 	console.log("logged");
-    $(this).siblings(".newspaper-content").removeClass('hidden');
+   	$(".newspaper-content").addClass('hidden');
+	$(this).siblings(".newspaper-content").removeClass('hidden');
 });
 
 
