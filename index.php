@@ -151,31 +151,12 @@ foreach ($states as $abbrv => &$fullname) {
 		  		
 		  	  <div id="map"></div>
 		  	  <div id="sidebar" class="hidden">
-			  	  
-			  	  <ul>
-			  	  	<li class='newspaper-report'>
-				  	  	<h2>Newspaper Name #1</h2>
-						<table>
-							<tr>
-								<td>Mon</td><td>Tues</td>
-							</tr>
-							<tr>
-								<td>25%</td><td>33%</td>
-							</tr>
-						</table>
-				  	  	<ul class='individual-report'>
-					  	  	<li><span class="stats-label">Circulation Level:</span> 45%</li>
-					  	  	<li><span class="stats-label">Monday Circulation:</span> 45%</li>
-				  	  	</ul>
-			  	  	</li>
-			  	  	<li>
-				  	  	<h2>Newspaper Name #2</h2>
-				  	  	<ul>
-					  	  	<li><span class="stats-label">Circulation Level:</span> 45%</li>
-					  	  	<li><span class="stats-label">Monday Circulation:</span> 45%</li>
-				  	  	</ul>
-			  	  	</li>			  	  
-			  	  </ul>
+			  	<div id="newslist">
+				
+				<select name="sometext" size="5">
+					<option>Newspaper1Demo</option>
+					<option>Newspaper2Demo</option>
+				</select>
 		  	  
 		  	  </div>
 		  	  <div id="footerInfo">
