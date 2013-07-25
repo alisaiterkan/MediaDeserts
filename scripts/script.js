@@ -115,8 +115,8 @@ function ajaxCall() {
 								reportHTML = reportHTML + "<p class='open-link'><span class='open-link-newspaper-name'>" + reportData['name'] + "</span> <span class='open-link-report-date'>(" + reportData['reportPeriod'] + ")</span><span class='open-link-status'>+</span></p>";
 								reportHTML = reportHTML + "<div class='newspaper-content hidden'> ";
 								reportHTML = reportHTML + "<h3>Report Taken: " + reportData['reportDate'] + "</h3>";
-								reportHTML = reportHTML + "<table><thead><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td><td>Sun</td></thead>";
-								reportHTML = reportHTML + "<tr><td>" + reportData['mondaycirculation'] + "</td><td>" + reportData['tuesdaycirculation'] + "</td><td>" + reportData['wednesdaycirculation'] + "</td><td>" + reportData['thursdaycirculation'] + "</td><td>" + reportData['fridaycirculation'] + "</td><td>" + reportData['saturdaycirculation'] + "</td><td>" + reportData['sundaycirculation'] + "</td></tr></table>";
+								reportHTML = reportHTML + "<table><thead><td>Avg. Daily</td><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td><td>Sun</td></thead>";
+								reportHTML = reportHTML + "<tr><td>" + reportData['combinedaverage'] + "</td><td>" + reportData['mondaycirculation'] + "</td><td>" + reportData['tuesdaycirculation'] + "</td><td>" + reportData['wednesdaycirculation'] + "</td><td>" + reportData['thursdaycirculation'] + "</td><td>" + reportData['fridaycirculation'] + "</td><td>" + reportData['saturdaycirculation'] + "</td><td>" + reportData['sundaycirculation'] + "</td></tr></table>";
 								reportHTML = reportHTML + "";
 								reportHTML = reportHTML + "<h3>" + "Occupied Homes: " + reportData['occupiedhomes'] + "<h3>";
 								reportHTML = reportHTML + "";								
