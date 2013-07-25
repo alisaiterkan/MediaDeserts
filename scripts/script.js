@@ -116,7 +116,7 @@ function ajaxCall() {
 								reportHTML = reportHTML + "<table><thead><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td><td>Sun</td></thead>";
 								reportHTML = reportHTML + "<tr><td>" + reportData['mondaycirculation'] + "</td><td>" + reportData['tuesdaycirculation'] + "</td><td>" + reportData['wednesdaycirculation'] + "</td><td>" + reportData['thursdaycirculation'] + "</td><td>" + reportData['fridaycirculation'] + "</td><td>" + reportData['saturdaycirculation'] + "</td><td>" + reportData['sundaycirculation'] + "</td></tr></table>";
 								reportHTML = reportHTML + "";
-								reportHTML = reportHTML + "<h3>" + reportData['occupiedhomes'] + "<h3>";
+								reportHTML = reportHTML + "<h3>" + "Occupied Homes: " + reportData['occupiedhomes'] + "<h3>";
 								reportHTML = reportHTML + "";								
 								reportHTML = reportHTML + "</div>";
 								reportHTML = reportHTML + "</div>";
