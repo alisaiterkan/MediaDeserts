@@ -18,6 +18,7 @@ $("#states-selector").multiselect({
 }).multiselectfilter();
 
 $(".newspaper-group .open-link").click(function() {
+	console.log("logged");
     $(this).siblings(".newspaper-content").removeClass('hidden');
 });
 // function initialize is loaded towards the bottom on window load with this line:
