@@ -71,6 +71,7 @@ function ajaxCall() {
 				var i = 0;
 				$(thisRow).children('reports').children('report').each(function() {
 				var reportData = {};
+				var reportHTML = "";
 
 						var from = parseInt($(this).attr("from"));
 						// reportData.push($(this).text());
@@ -96,11 +97,12 @@ function ajaxCall() {
 							 	reportData['occupiedhomes'] = parseFloat($(this).children("occupiedhomes").text());
 								reportGroup.push(reportData);
 
-								zipHTML[zipcode] = "<h2>" + reportData['name'] + "</h2>";
-									zipHTML[zipcode] = zipHTML[zipcode] + "<div class='newspaper-group' id='newspaper-" + reportData['paperID'] + "'>";
-									zipHTML[zipcode] = zipHTML[zipcode] + '<a href="#" class="open-link">Open</a>';
-									zipHTML[zipcode] = zipHTML[zipcode] + "<div class='newspaper-content hidden'>Blah Blah 2</div>";
-									zipHTML[zipcode] = zipHTML[zipcode] + "</div>";
+								reportHTML = "<h2>" + reportData['name'] + "</h2>";
+								reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-" + reportData['paperID'] + "'>";
+								reportHTML = reportHTML + '<a href="#" class="open-link">Open</a>';
+								reportHTML = reportHTML + "<div class='newspaper-content hidden'>Blah Blah 2</div>";
+								reportHTML = reportHTML + "</div>";
+								zipHTML.push(reportHTML);
 				});
 								
 				// if there is only one polygon for the zipcode...
