@@ -214,7 +214,7 @@ function ajaxCall() {
 				google.maps.event.addDomListener(zippolygon[zipcode], "mouseout", function(){
 					mouseoutPolygon(zippolygon[zipcode])});
 				google.maps.event.addDomListener(zippolygon[zipcode], "click", function(){
-					clickPolygon(zippolygon[zipcode], demographicsHTML, reportHTML)});
+					clickPolygon(zippolygon[zipcode], null, reportHTML)});
 			});
 		});
 		$('#map').removeClass("loading");
