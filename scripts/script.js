@@ -18,6 +18,9 @@ $("#states-selector").multiselect({
 	multiple: false
 }).multiselectfilter();
 
+$("#states-selector").change( function() {
+  console.log($(this).val());
+});
 
 });
 // function initialize is loaded towards the bottom on window load with this line:
