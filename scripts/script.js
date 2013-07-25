@@ -36,7 +36,7 @@ function mouseoutPolygon(zipCode){
 			});
 }
 function clickPolygon(zipCode, reportHTML){
-
+console.log(reportHTML);
 	zipCode.setOptions({
 				strokeOpacity: 0.1,
 				strokeWeight: 2,
@@ -67,7 +67,7 @@ function ajaxCall() {
 				// var zipcode stores the number of the zipcode from the circulation area
 				var zipcode = $(thisRow).children('zipcode').text();
 				var reportGroup = [];
-				
+				var htmlGroup = [];				
 				var i = 0;
 				$(thisRow).children('reports').children('report').each(function() {
 				var reportData = {};
@@ -102,9 +102,9 @@ function ajaxCall() {
 								reportHTML = reportHTML + '<a href="#" class="open-link">Open</a>';
 								reportHTML = reportHTML + "<div class='newspaper-content hidden'>Blah Blah 2</div>";
 								reportHTML = reportHTML + "</div>";
-								zipHTML.push(reportHTML);
+								htmlGroup.push(reportHTML);
 				});
-								
+				zipHTML[zipcode] = htmlGroup;				
 				// if there is only one polygon for the zipcode...
 				if ($(thisRow).children('geometry').children('Polygon')) {
 						// var polygonOuterBoundary sets up the array to be used in the following loop
