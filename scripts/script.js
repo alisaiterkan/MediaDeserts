@@ -48,7 +48,7 @@ console.log(reportHTML);
 			});
 
 $('#sidebar').html(reportHTML);
-$(".newspaper-group h2").click(function() {
+$(".open-link").click(function() {
 	console.log("logged");
    	$(".newspaper-content").addClass('hidden');
 	$(this).siblings(".newspaper-content").removeClass('hidden');
@@ -110,9 +110,9 @@ function ajaxCall() {
 
 								
 								reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-" + reportData['paperid'] + "'>";
-								reportHTML = reportHTML + "<h2>" + reportData['name'] + "</h2>";
+								reportHTML = reportHTML + "<p class='open-link'><span class='open-link-newspaper-name'>" + reportData['name'] + "</span><span class='open-link-report-date'>" + reportData['reportPeriod'] + "</span><span class='open-link-status'>+</span></p>";
 								reportHTML = reportHTML + "<div class='newspaper-content hidden'> ";
-								reportHTML = reportHTML + "<h3>" + reportData['reportDate'] + "</h3>";
+								reportHTML = reportHTML + "<h3>Report Taken: " + reportData['reportDate'] + "</h3>";
 								reportHTML = reportHTML + "<table><thead><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td><td>Sun</td></thead>";
 								reportHTML = reportHTML + "<tr><td>" + reportData['mondaycirculation'] + "</td><td>" + reportData['tuesdaycirculation'] + "</td><td>" + reportData['wednesdaycirculation'] + "</td><td>" + reportData['thursdaycirculation'] + "</td><td>" + reportData['fridaycirculation'] + "</td><td>" + reportData['saturdaycirculation'] + "</td><td>" + reportData['sundaycirculation'] + "</td></tr></table>";
 								reportHTML = reportHTML + "";
