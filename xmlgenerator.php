@@ -52,6 +52,8 @@ if (strpos($geometry,'<MultiGeometry>') == true) {
 }
 
 if($type == "json") {
+header('Content-Type: application/json');
+
 	$circulationAreaResults = mysqli_query($con,"SELECT circulationAreas.zipcode, circulationAreas.occupiedHomes, sundayCirculation, combinedSundayCirculation, geometry FROM circulationAreas INNER JOIN zipcodes ON circulationAreas.zipcode = zipcodes.zipcode WHERE STATE='NC' GROUP BY zipcode ORDER BY circulationAreas.zipcode ASC;");
 
 $json = array();
