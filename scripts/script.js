@@ -50,8 +50,10 @@ console.log(reportHTML);
 $('#sidebar').html(reportHTML);
 $(".open-link").click(function() {
 	console.log("logged");
+   	$(".open-link-status").text('+');
    	$(".newspaper-content").addClass('hidden');
 	$(this).siblings(".newspaper-content").removeClass('hidden');
+	$(this).children(".open-link-status").text('-');
 });
 
 
@@ -110,7 +112,7 @@ function ajaxCall() {
 
 								
 								reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-" + reportData['paperid'] + "'>";
-								reportHTML = reportHTML + "<p class='open-link'><span class='open-link-newspaper-name'>" + reportData['name'] + "</span><span class='open-link-report-date'>" + reportData['reportPeriod'] + "</span><span class='open-link-status'>+</span></p>";
+								reportHTML = reportHTML + "<p class='open-link'><span class='open-link-newspaper-name'>" + reportData['name'] + "</span> <span class='open-link-report-date'>(" + reportData['reportPeriod'] + ")</span><span class='open-link-status'>+</span></p>";
 								reportHTML = reportHTML + "<div class='newspaper-content hidden'> ";
 								reportHTML = reportHTML + "<h3>Report Taken: " + reportData['reportDate'] + "</h3>";
 								reportHTML = reportHTML + "<table><thead><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td><td>Sun</td></thead>";
