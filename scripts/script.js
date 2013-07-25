@@ -17,7 +17,7 @@ $("#states-selector").multiselect({
 	multiple: false
 }).multiselectfilter();
 
-$(".newspaper-group .open-link").click(function() {
+$(".open-link").click(function() {
 	console.log("logged");
     $(this).siblings(".newspaper-content").removeClass('hidden');
 });
