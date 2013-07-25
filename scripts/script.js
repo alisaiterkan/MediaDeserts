@@ -67,8 +67,11 @@ function ajaxCall() {
 	var zipcoords = [];
 
 	var zipHTML = [];
-
-		$.get('xmlgenerator.php', function(data) {
+$.ajax({
+  type: "POST",
+  url: "xmlgenerator.php",
+  data: { name: "John", location: "Boston" }
+}).done(function( data ) {
 		// when the page is loaded, it will then process the XML file  
 		$(document).ready(function() {
 			// LOOP for each of the circulation areas (children of the response)  
@@ -111,7 +114,7 @@ function ajaxCall() {
 								reportGroup.push(reportData);
 
 								
-								reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-" + reportData['paperid'] + "'>";
+								reportHTML = reportHTML + "<div class='newspaper-group newspaper-" + reportData['paperid'] + "'>";
 								reportHTML = reportHTML + "<p class='open-link'><span class='open-link-newspaper-name'>" + reportData['name'] + "</span> <span class='open-link-report-date'>(" + reportData['reportPeriod'] + ")</span><span class='open-link-status'>+</span></p>";
 								reportHTML = reportHTML + "<div class='newspaper-content hidden'> ";
 								reportHTML = reportHTML + "<h3>Report Taken: " + reportData['reportDate'] + "</h3>";
