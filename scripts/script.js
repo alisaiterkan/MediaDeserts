@@ -35,33 +35,18 @@ function mouseoutPolygon(zipCode){
 				fillOpacity: .70
 			});
 }
-function clickPolygon(zipCode, demographicsHTML, reportsHTML){
+function clickPolygon(zipCode, demographicsHTML, reportHTML){
+
 	zipCode.setOptions({
 				strokeOpacity: 0.1,
 				strokeWeight: 2,
 				fillOpacity: 1
 			});
-}
 
-function updateSidebar(reportHTML){
-	reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-2'>";
-	reportHTML = reportHTML + '<a href="#" class="open-link">Newspaper1</a>';
-	reportHTML = reportHTML + "<div class='newspaper-content hidden'>Blah Blah Blah 1</div>";
-	reportHTML = reportHTML + "</div>";
-
-	reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-'>";
-	reportHTML = reportHTML + '<a href="#" class="open-link">Newspaper2</a>';
-	reportHTML = reportHTML + "<div class='newspaper-content hidden'>Blah Blah 2</div>";
-	reportHTML = reportHTML + "</div>";
-
-	$('.content').html(reportHTML);
-
-	$(".newspaper-group .open-link").click(function() {
-	    $(this).siblings(".newspaper-content").show();
-	});
+$('.content').html(reportHTML);
 
 }
-
+}
 
 function initialize() {
 function ajaxCall() {
@@ -80,7 +65,7 @@ function ajaxCall() {
 				// var zipcode stores the number of the zipcode from the circulation area
 				var zipcode = $(thisRow).children('zipcode').text();
 				var reportGroup = [];
-				var reportsHTML = [];
+				
 				var i = 0;
 				$(thisRow).children('reports').children('report').each(function() {
 				var reportData = {};
@@ -108,10 +93,14 @@ function ajaxCall() {
 							 	reportData['wednesdaycirculation'] = parseInt($(this).children("wednesdaycirculation").text(), 10);
 							 	reportData['occupiedhomes'] = parseFloat($(this).children("occupiedhomes").text());
 								reportGroup.push(reportData);
-								reportHTML = reportHTML + "<h2>" + reportData['name'] + "</h2>";
-								reportHTML = reportHTML + "<ul>" + "<li>" + reportData['name'];
+
+								reportHTML = "<h2>" + reportData['name'] + "</h2>";
+									reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-" + reportData['paperID'] + "'>";
+									reportHTML = reportHTML + '<a href="#" class="open-link">Open</a>';
+									reportHTML = reportHTML + "<div class='newspaper-content hidden'>Blah Blah 2</div>";
+									reportHTML = reportHTML + "</div>";
 				});
-								updateSidebar(reportHTML);
+								
 				// if there is only one polygon for the zipcode...
 				if ($(thisRow).children('geometry').children('Polygon')) {
 						// var polygonOuterBoundary sets up the array to be used in the following loop
@@ -225,7 +214,7 @@ function ajaxCall() {
 				google.maps.event.addDomListener(zippolygon[zipcode], "mouseout", function(){
 					mouseoutPolygon(zippolygon[zipcode])});
 				google.maps.event.addDomListener(zippolygon[zipcode], "click", function(){
-					clickPolygon(zippolygon[zipcode], demographicsHTML, reportsHTML)});
+					clickPolygon(zippolygon[zipcode], demographicsHTML, reportHTML)});
 			});
 		});
 		$('#map').removeClass("loading");
