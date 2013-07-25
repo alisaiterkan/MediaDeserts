@@ -35,7 +35,7 @@ function mouseoutPolygon(zipCode){
 				fillOpacity: .70
 			});
 }
-function clickPolygon(zipCode, demographicsHTML, reportHTML){
+function clickPolygon(zipCode, reportHTML){
 
 	zipCode.setOptions({
 				strokeOpacity: 0.1,
@@ -43,7 +43,7 @@ function clickPolygon(zipCode, demographicsHTML, reportHTML){
 				fillOpacity: 1
 			});
 
-$('.content').html(reportHTML);
+$('#sidebar').html(reportHTML);
 
 
 }
@@ -54,6 +54,8 @@ function ajaxCall() {
 	var zippolygon = [];
 	// var zipcoords defines the array to hold all of the coordinates data   
 	var zipcoords = [];
+
+	var zipHTML = [];
 
 		$.get('xmlgenerator.php', function(data) {
 		// when the page is loaded, it will then process the XML file  
@@ -69,7 +71,7 @@ function ajaxCall() {
 				var i = 0;
 				$(thisRow).children('reports').children('report').each(function() {
 				var reportData = {};
-				var reportHTML = "";
+
 						var from = parseInt($(this).attr("from"));
 						// reportData.push($(this).text());
 								
@@ -94,11 +96,11 @@ function ajaxCall() {
 							 	reportData['occupiedhomes'] = parseFloat($(this).children("occupiedhomes").text());
 								reportGroup.push(reportData);
 
-								reportHTML = "<h2>" + reportData['name'] + "</h2>";
-									reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-" + reportData['paperID'] + "'>";
-									reportHTML = reportHTML + '<a href="#" class="open-link">Open</a>';
-									reportHTML = reportHTML + "<div class='newspaper-content hidden'>Blah Blah 2</div>";
-									reportHTML = reportHTML + "</div>";
+								zipHTML[zipcode] = "<h2>" + reportData['name'] + "</h2>";
+									zipHTML[zipcode] = zipHTML[zipcode] + "<div class='newspaper-group' id='newspaper-" + reportData['paperID'] + "'>";
+									zipHTML[zipcode] = zipHTML[zipcode] + '<a href="#" class="open-link">Open</a>';
+									zipHTML[zipcode] = zipHTML[zipcode] + "<div class='newspaper-content hidden'>Blah Blah 2</div>";
+									zipHTML[zipcode] = zipHTML[zipcode] + "</div>";
 				});
 								
 				// if there is only one polygon for the zipcode...
@@ -214,7 +216,7 @@ function ajaxCall() {
 				google.maps.event.addDomListener(zippolygon[zipcode], "mouseout", function(){
 					mouseoutPolygon(zippolygon[zipcode])});
 				google.maps.event.addDomListener(zippolygon[zipcode], "click", function(){
-					clickPolygon(zippolygon[zipcode], null, reportHTML)});
+					clickPolygon(zippolygon[zipcode], zipHTML[zipcode])});
 			});
 		});
 		$('#map').removeClass("loading");
@@ -335,8 +337,6 @@ function ajaxCall() {
 	});
 	map.mapTypes.set('map_style', styledMap);
 }
-google.maps.event.addDomListener(window, "load", initialize);
-
 google.maps.event.addDomListener(window, "load", initialize);
 
 
