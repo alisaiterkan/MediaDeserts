@@ -16,6 +16,10 @@ $("#states-selector").multiselect({
 	minWidth: 'auto',
 	multiple: false
 }).multiselectfilter();
+
+$(".newspaper-group .open-link").click(function() {
+    $(this).siblings(".newspaper-content").removeClass('hidden');
+});
 // function initialize is loaded towards the bottom on window load with this line:
 
 
@@ -100,7 +104,7 @@ function ajaxCall() {
 								reportGroup.push(reportData);
 
 								reportHTML = "<h2>" + reportData['name'] + "</h2>";
-								reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-" + reportData['paperID'] + "'>";
+								reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-" + reportData['paperid'] + "'>";
 								reportHTML = reportHTML + '<a href="#" class="open-link">Open</a>';
 								reportHTML = reportHTML + "<div class='newspaper-content hidden'> ";
 								reportHTML = reportHTML + "<h3>" + reportData['reportDate'] + "</h3>";
