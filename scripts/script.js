@@ -45,6 +45,24 @@ console.log("mouseout");
 				fillOpacity: 1
 			});
 }
+function updateSidebar(reportHTML){
+	reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-2'>";
+	reportHTML = reportHTML + '<a href="#" class="open-link">Newspaper1</a>';
+	reportHTML = reportHTML + "<div class='newspaper-content hidden'>Blah Blah Blah 1</div>";
+	reportHTML = reportHTML + "</div>";
+
+	reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-" + newspaperID +"'>";
+	reportHTML = reportHTML + '<a href="#" class="open-link">Newspaper2</a>';
+	reportHTML = reportHTML + "<div class='newspaper-content hidden'>Blah Blah 2</div>";
+	reportHTML = reportHTML + "</div>";
+
+	$('.content').html(reportHTML);
+
+	$(".newspaper-group .open-link").click(function() {
+	    $(this).siblings(".newspaper-content").show();
+	});
+
+}
 
 function ajaxCall() {
 	// var zippolygon defines the array to hold all of the polygons   
@@ -96,20 +114,12 @@ function ajaxCall() {
 								//reportHTML = "<h3>" + reportData['reportDate'] + "</h3>"
 
 								i++;
-
-							var Sidebar = Sidebar + "<div class='newspaper-group' id='newspaper-2'>";
-							Sidebar = Sidebar + '<a href="#" class="open-link">Open</a>';
-							Sidebar = Sidebar + "<div class='newspaper-content hidden'>Blah Blah Blah 1</div>";
-							Sidebar = Sidebar + "</div>";
+								updateSidebar(reportHTML);
 
 
-							$('.content').html(Sidebar);
-
-							$(".newspaper-group .open-link").click(function() {
-							    $(this).siblings(".newspaper-content").show();
-							});
+							
 				
-				//console.log(reportHTML); 
+				console.log(reportHTML); 
 				// if there is only one polygon for the zipcode...
 				if ($(thisRow).children('geometry').children('Polygon')) {
 						// var polygonOuterBoundary sets up the array to be used in the following loop
