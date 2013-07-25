@@ -18,10 +18,7 @@ $("#states-selector").multiselect({
 	multiple: false
 }).multiselectfilter();
 
-$("a").click(function() {
-	console.log("logged");
-    $(this).siblings(".newspaper-content").removeClass('hidden');
-});
+
 });
 // function initialize is loaded towards the bottom on window load with this line:
 
@@ -51,6 +48,10 @@ console.log(reportHTML);
 			});
 
 $('#sidebar').html(reportHTML);
+$("a").click(function() {
+	console.log("logged");
+    $(this).siblings(".newspaper-content").removeClass('hidden');
+});
 
 
 }
