@@ -113,11 +113,16 @@ function ajaxCall() {
 								reportHTML = reportHTML + "<div class='newspaper-content hidden'> ";
 								reportHTML = reportHTML + "<h3>" + reportData['reportDate'] + "</h3>";
 								reportHTML = reportHTML + "<table><thead><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td><td>Sun</td></thead>";
-								reportHTML = reportHTML + "<tr><td>" + reportData['mondaycirculation'] + "</td><td>" + reportData['tuesdaycirculation'] + "</td><td>" + reportData['wednesdaycirculation'] + "</td><td>" + reportData['thursdaycirculation'] + "</td><td>" + reportData['fridaycirculation'] + "</td><td>" + reportData['saturdaycirculation'] + "</td><td>" + reportData['sundaycirculation'] + "</td></tr>";
+								reportHTML = reportHTML + "<tr><td>" + reportData['mondaycirculation'] + "</td><td>" + reportData['tuesdaycirculation'] + "</td><td>" + reportData['wednesdaycirculation'] + "</td><td>" + reportData['thursdaycirculation'] + "</td><td>" + reportData['fridaycirculation'] + "</td><td>" + reportData['saturdaycirculation'] + "</td><td>" + reportData['sundaycirculation'] + "</td></tr></table>";
+								reportHTML = reportHTML + "";
+								reportHTML = reportHTML + "<h3>" + reportData['occupiedHomes'] + "<h3>";
+								reportHTML = reportHTML + "";								
 								reportHTML = reportHTML + "</div>";
 								reportHTML = reportHTML + "</div>";
 								htmlGroup.push(reportHTML);
 				});
+				//ADD STATS into htmlGroup HERE
+
 				zipHTML[zipcode] = htmlGroup;				
 				// if there is only one polygon for the zipcode...
 				if ($(thisRow).children('geometry').children('Polygon')) {
