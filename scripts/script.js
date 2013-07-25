@@ -45,7 +45,7 @@ function clickPolygon(zipCode, demographicsHTML, reportHTML){
 
 $('.content').html(reportHTML);
 
-}
+
 }
 
 function initialize() {
