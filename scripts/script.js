@@ -16,7 +16,8 @@ $("#states-selector").multiselect({
 	minWidth: 'auto',
 	multiple: false
 }).multiselectfilter();
-// function initialize is loaded towards the bottom on window load with this line:
+
+var map = null;
 
 
 
@@ -338,7 +339,7 @@ function initialize() {
 		}
 	}
 	// var map finds the HTML element with the ID #map and loads the map into it   
-	var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+	map = new google.maps.Map(document.getElementById('map'), mapOptions);
 	// Adds an opacity to the map to signify loading
 	$('#map').addClass("loading");
 	ajaxCall();
