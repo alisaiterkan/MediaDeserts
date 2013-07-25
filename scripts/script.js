@@ -243,7 +243,7 @@ function ajaxCall(data) {
 					});
 				}
 				var color = "#" + $(this).children("stats").children("color").text();
-				zippolygon[zipcode] = null;
+				zippolygon[zipcode].setMap(null);
 				// create the polygon
 				zippolygon[zipcode] = new google.maps.Polygon({
 					paths: polygonCoords,
