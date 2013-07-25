@@ -66,7 +66,6 @@ function ajaxCall() {
 				var i = 0;
 				$(thisRow).children('reports').children('report').each(function() {
 				var reportData = {};
-				//var reportHTML = "";
 						var from = parseInt($(this).attr("from"));
 						// reportData.push($(this).text());
 								
@@ -98,7 +97,7 @@ function ajaxCall() {
 
 								i++;
 				
-				console.log(reportHTML); 
+				//console.log(reportHTML); 
 				// if there is only one polygon for the zipcode...
 				if ($(thisRow).children('geometry').children('Polygon')) {
 						// var polygonOuterBoundary sets up the array to be used in the following loop
