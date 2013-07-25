@@ -48,7 +48,7 @@ console.log(reportHTML);
 			});
 
 $('#sidebar').html(reportHTML);
-$("a").click(function() {
+$(".newspaper-group h2").click(function() {
 	console.log("logged");
    	$(".newspaper-content").addClass('hidden');
 	$(this).siblings(".newspaper-content").removeClass('hidden');
@@ -108,9 +108,9 @@ function ajaxCall() {
 
 								reportGroup.push(reportData);
 
-								reportHTML = "<h2>" + reportData['name'] + "</h2>";
+								
 								reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-" + reportData['paperid'] + "'>";
-								reportHTML = reportHTML + '<a href="#" class="open-link">Open</a>';
+								reportHTML = reportHTML + "<h2>" + reportData['name'] + "</h2>";
 								reportHTML = reportHTML + "<div class='newspaper-content hidden'> ";
 								reportHTML = reportHTML + "<h3>" + reportData['reportDate'] + "</h3>";
 								reportHTML = reportHTML + "<table><thead><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td><td>Sun</td></thead>";
