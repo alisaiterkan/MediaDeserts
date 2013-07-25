@@ -83,24 +83,30 @@ function ajaxCall() {
 							 	reportData['name'] = $(this).children("name").text();
 							 	reportData['additionaldescription'] = $(this).children("additionaldescription").text();
 							 	reportData['combinedaverage'] = parseInt($(this).children("combinedaverage").text(), 10);
-							 	reportData['combineddaily'] = parseInt($(this).children("combinedsundaycirculation").text(), 10);
+							 	reportData['combinedsundaycirculation'] = parseInt($(this).children("combinedsundaycirculation").text(), 10);
 							 	reportData['frequency'] = $(this).children("frequency").text();
 							 	reportData['fridaycirculation'] = parseInt($(this).children("fridaycirculation").text(), 10);
 							 	reportData['mondaycirculation'] = parseInt($(this).children("mondaycirculation").text(), 10);
 							 	reportData['paperid'] = parseInt($(this).children("paperid").text(), 10);
 							 	reportData['saturdaycirculation'] = parseInt($(this).children("saturdaycirculation").text(), 10);
-							 	reportData['sundaycirculation'] = parseInt($(this).children("sundaycirculation").text(), 10);
+							 	reportData['sundaycirculation'] = parseInt($(this).children("sundaycirculation").text(), 10) + parseInt($(this).children("combinedsundaycirculation").text(), 10);
 							 	reportData['thursdaycirculation'] = parseInt($(this).children("thursdaycirculation").text(), 10);
 							 	reportData['tuesdaycirculation'] = parseInt($(this).children("tuesdaycirculation").text(), 10);
 							 	reportData['tuesdaycirculation'] = parseInt($(this).children("tuesdaycirculation").text(), 10);
 							 	reportData['wednesdaycirculation'] = parseInt($(this).children("wednesdaycirculation").text(), 10);
 							 	reportData['occupiedhomes'] = parseFloat($(this).children("occupiedhomes").text());
+
+
 								reportGroup.push(reportData);
 
 								reportHTML = "<h2>" + reportData['name'] + "</h2>";
 								reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-" + reportData['paperID'] + "'>";
 								reportHTML = reportHTML + '<a href="#" class="open-link">Open</a>';
-								reportHTML = reportHTML + "<div class='newspaper-content hidden'>Blah Blah 2</div>";
+								reportHTML = reportHTML + "<div class='newspaper-content hidden'> ";
+								reportHTML = reportHTML + "<h3>" + reportData['reportDate'] + "</h3>";
+								reportHTML = reportHTML + "<table><thead><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td><td>Sun</td></thead>";
+								reportHTML = reportHTML + "<tr><td>" + reportData['mondaycirculation'] + "</td><td>" + reportData['tuesdaycirculation'] + "</td><td>" + reportData['wednesdaycirculation'] + "</td><td>" + reportData['thursdaycirculation'] + "</td><td>" + reportData['fridaycirculation'] + "</td><td>" + reportData['saturdaycirculation'] + "</td><td>" + reportData['sundaycirculation'] + "</td></tr>";
+								reportHTML = reportHTML + "</div>";
 								reportHTML = reportHTML + "</div>";
 								htmlGroup.push(reportHTML);
 				});
