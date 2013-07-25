@@ -46,6 +46,8 @@ console.log("mouseout");
 			});
 }
 
+
+function initialize() {
 function ajaxCall() {
 	// var zippolygon defines the array to hold all of the polygons   
 	var zippolygon = [];
@@ -62,10 +64,11 @@ function ajaxCall() {
 				// var zipcode stores the number of the zipcode from the circulation area
 				var zipcode = $(thisRow).children('zipcode').text();
 				var reportGroup = [];
-				//var reportsHTML = [];
+				var reportsHTML = [];
 				var i = 0;
 				$(thisRow).children('reports').children('report').each(function() {
 				var reportData = {};
+				var reportHTML = "";
 						var from = parseInt($(this).attr("from"));
 						// reportData.push($(this).text());
 								
@@ -89,15 +92,10 @@ function ajaxCall() {
 							 	reportData['wednesdaycirculation'] = parseInt($(this).children("wednesdaycirculation").text(), 10);
 							 	reportData['occupiedhomes'] = parseFloat($(this).children("occupiedhomes").text());
 								reportGroup.push(reportData);
-								/*if(!reportHTML[reportData['paperid']]) {
-									reportHTML[reportData['paperid']][i] = "<h2>" + reportData['name'] + "</h2>"
-								} else {
-									reportHTML[reportData['paperid']][i] = "<h3>" + reportData['reportDate'] + "</h3>"
-								}*/
-
-								i++;
+								reportHTML = reportHTML + "<h2>" + reportData['name'] + "</h2>";
+								reportHTML = reportHTML + "<ul>" + "<li>" + reportData['name'];
+				});
 				
-				//console.log(reportHTML); 
 				// if there is only one polygon for the zipcode...
 				if ($(thisRow).children('geometry').children('Polygon')) {
 						// var polygonOuterBoundary sets up the array to be used in the following loop
@@ -216,11 +214,8 @@ function ajaxCall() {
 		});
 		$('#map').removeClass("loading");
 	});
-});
+
 }
-
-
-function initialize() {
 	// var oldZip is used for keeping tracking of the activated polygon 
 	var oldZip = null;
 	// var style defines the dark color scheme used by the map 
