@@ -24,26 +24,42 @@ $("#states-selector").multiselect({
 
 
 function mouseoverPolygon(zipCode){
-console.log("mouseover");
 	zipCode.setOptions({
 				strokeOpacity: 0.5,
 				fillOpacity: .90
 			});
 }
 function mouseoutPolygon(zipCode){
-console.log("mouseout");
 	zipCode.setOptions({
 				strokeOpacity: 0.1,
 				fillOpacity: .70
 			});
 }
 function clickPolygon(zipCode, demographicsHTML, reportsHTML){
-console.log("mouseout");
 	zipCode.setOptions({
 				strokeOpacity: 0.1,
 				strokeWeight: 2,
 				fillOpacity: 1
 			});
+}
+
+function updateSidebar(reportHTML){
+	reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-2'>";
+	reportHTML = reportHTML + '<a href="#" class="open-link">Newspaper1</a>';
+	reportHTML = reportHTML + "<div class='newspaper-content hidden'>Blah Blah Blah 1</div>";
+	reportHTML = reportHTML + "</div>";
+
+	reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-'>";
+	reportHTML = reportHTML + '<a href="#" class="open-link">Newspaper2</a>';
+	reportHTML = reportHTML + "<div class='newspaper-content hidden'>Blah Blah 2</div>";
+	reportHTML = reportHTML + "</div>";
+
+	$('.content').html(reportHTML);
+
+	$(".newspaper-group .open-link").click(function() {
+	    $(this).siblings(".newspaper-content").show();
+	});
+
 }
 
 
@@ -95,7 +111,7 @@ function ajaxCall() {
 								reportHTML = reportHTML + "<h2>" + reportData['name'] + "</h2>";
 								reportHTML = reportHTML + "<ul>" + "<li>" + reportData['name'];
 				});
-				
+								updateSidebar(reportHTML);
 				// if there is only one polygon for the zipcode...
 				if ($(thisRow).children('geometry').children('Polygon')) {
 						// var polygonOuterBoundary sets up the array to be used in the following loop
