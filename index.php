@@ -151,12 +151,7 @@ foreach ($states as $abbrv => &$fullname) {
 		  		
 		  	  <div id="map"></div>
 		  	  <div id="sidebar" class="hidden">
-			  	<div id="newslist">
-				
-				<select name="sometext" size="5">
-					<option>Newspaper1Demo</option>
-					<option>Newspaper2Demo</option>
-				</select>
+			  	<div class="content"></div>
 		  	  
 		  	  </div>
 		  	  <div id="footerInfo">

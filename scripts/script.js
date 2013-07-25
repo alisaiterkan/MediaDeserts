@@ -91,9 +91,9 @@ function ajaxCall() {
 								reportGroup.push(reportData);
 								if(!($.inArray(reportData['paperid'], paperIdTracker))) {
 									paperIdTracker.push(reportData['paperid']);
-									reportHTML = "<h2>" + reportData['name'] + "</h2>"
+									//reportHTML = "<h2>" + reportData['name'] + "</h2>"
 								}
-								reportHTML = "<h3>" + reportData['reportDate'] + "</h3>"
+								//reportHTML = "<h3>" + reportData['reportDate'] + "</h3>"
 
 								i++;
 				
@@ -337,6 +337,23 @@ function initialize() {
 }
 google.maps.event.addDomListener(window, "load", initialize);
 
+function sidebar(){
+	reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-2'>";
+	reportHTML = reportHTML + '<a href="#" class="open-link">Open</a>';
+	reportHTML = reportHTML + "<div class='newspaper-content hidden'>Blah Blah Blah 1</div>";
+	reportHTML = reportHTML + "</
+
+	reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-" + newspaperID +"'>";
+	reportHTML = reportHTML + '<a href="#" class="open-link">Open</a>';
+	reportHTML = reportHTML + "<div class='newspaper-content hidden'>Blah Blah 2</div>";
+	reportHTML = reportHTML + "</div>";
+
+	$('.content').html(reportHTML);
+
+	$(".newspaper-group .open-link").click(function() {
+	    $(this).siblings(".newspaper-content").show();
+	});
+}
 
 
 Shadowbox.init();
