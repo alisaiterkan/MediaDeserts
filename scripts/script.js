@@ -19,15 +19,10 @@ $("#states-selector").multiselect({
 }).multiselectfilter();
 
 $("#states-selector").change( function() {
-  console.log($(this).val());
+  console.log(this.value);
   
-  $.ajax({
-  type: "POST",
-  url: "xmlgenerator.php",
-  data: { state: $(this).val() }
-}).done(function( data ) {
-	console.log(data)
-});
+
+
 });
 
 });
@@ -80,8 +75,7 @@ function ajaxCall() {
 	var zipHTML = [];
 $.ajax({
   type: "POST",
-  url: "xmlgenerator.php",
-  data: { state: state, location: "Boston" }
+  url: "xmlgenerator.php"
 }).done(function( data ) {
 		// when the page is loaded, it will then process the XML file  
 		$(document).ready(function() {
