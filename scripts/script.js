@@ -1,3 +1,4 @@
+		$(document).ready(function() {
 // Defines the UI filters
 $("#circulation-selector").multiselect({
 	selectedText: "# of # selected",
@@ -20,6 +21,7 @@ $("#states-selector").multiselect({
 $("a").click(function() {
 	console.log("logged");
     $(this).siblings(".newspaper-content").removeClass('hidden');
+});
 });
 // function initialize is loaded towards the bottom on window load with this line:
 
