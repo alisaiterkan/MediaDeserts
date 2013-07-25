@@ -20,6 +20,7 @@ $("#states-selector").multiselect({
 
 $("#states-selector").change( function() {
   console.log($(this).val());
+  ajaxCall($(this).val());
 });
 
 });
@@ -63,7 +64,7 @@ $(".open-link").click(function() {
 }
 
 function initialize() {
-function ajaxCall() {
+function ajaxCall(state = null) {
 	// var zippolygon defines the array to hold all of the polygons   
 	var zippolygon = [];
 	// var zipcoords defines the array to hold all of the coordinates data   
@@ -73,7 +74,7 @@ function ajaxCall() {
 $.ajax({
   type: "POST",
   url: "xmlgenerator.php",
-  data: { name: "John", location: "Boston" }
+  data: { state: state, location: "Boston" }
 }).done(function( data ) {
 		// when the page is loaded, it will then process the XML file  
 		$(document).ready(function() {
