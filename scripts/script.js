@@ -51,7 +51,7 @@ function updateSidebar(reportHTML){
 	reportHTML = reportHTML + "<div class='newspaper-content hidden'>Blah Blah Blah 1</div>";
 	reportHTML = reportHTML + "</div>";
 
-	reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-" + newspaperID +"'>";
+	reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-'>";
 	reportHTML = reportHTML + '<a href="#" class="open-link">Newspaper2</a>';
 	reportHTML = reportHTML + "<div class='newspaper-content hidden'>Blah Blah 2</div>";
 	reportHTML = reportHTML + "</div>";
