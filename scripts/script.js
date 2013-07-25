@@ -16,8 +16,7 @@ $("#states-selector").multiselect({
 	minWidth: 'auto',
 	multiple: false
 }).multiselectfilter();
-
-var map = null;
+// function initialize is loaded towards the bottom on window load with this line:
 
 
 
@@ -45,24 +44,6 @@ console.log("mouseout");
 				strokeWeight: 2,
 				fillOpacity: 1
 			});
-}
-function updateSidebar(reportHTML){
-	reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-2'>";
-	reportHTML = reportHTML + '<a href="#" class="open-link">Newspaper1</a>';
-	reportHTML = reportHTML + "<div class='newspaper-content hidden'>Blah Blah Blah 1</div>";
-	reportHTML = reportHTML + "</div>";
-
-	reportHTML = reportHTML + "<div class='newspaper-group' id='newspaper-'>";
-	reportHTML = reportHTML + '<a href="#" class="open-link">Newspaper2</a>';
-	reportHTML = reportHTML + "<div class='newspaper-content hidden'>Blah Blah 2</div>";
-	reportHTML = reportHTML + "</div>";
-
-	$('.content').html(reportHTML);
-
-	$(".newspaper-group .open-link").click(function() {
-	    $(this).siblings(".newspaper-content").show();
-	});
-
 }
 
 function ajaxCall() {
@@ -112,13 +93,9 @@ function ajaxCall() {
 									paperIdTracker.push(reportData['paperid']);
 									reportHTML = "<h2>" + reportData['name'] + "</h2>"
 								}
-								//reportHTML = "<h3>" + reportData['reportDate'] + "</h3>"
+								reportHTML = "<h3>" + reportData['reportDate'] + "</h3>"
 
 								i++;
-								updateSidebar(reportHTML);
-
-
-							
 				
 				console.log(reportHTML); 
 				// if there is only one polygon for the zipcode...
@@ -339,7 +316,7 @@ function initialize() {
 		}
 	}
 	// var map finds the HTML element with the ID #map and loads the map into it   
-	map = new google.maps.Map(document.getElementById('map'), mapOptions);
+	var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 	// Adds an opacity to the map to signify loading
 	$('#map').addClass("loading");
 	ajaxCall();
@@ -359,8 +336,6 @@ function initialize() {
 	map.mapTypes.set('map_style', styledMap);
 }
 google.maps.event.addDomListener(window, "load", initialize);
-
-	
 
 
 
