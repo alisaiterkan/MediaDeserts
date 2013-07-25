@@ -20,7 +20,14 @@ $("#states-selector").multiselect({
 
 $("#states-selector").change( function() {
   console.log($(this).val());
-  ajaxCall($(this).val());
+  
+  $.ajax({
+  type: "POST",
+  url: "xmlgenerator.php",
+  data: { state: $(this).val() }
+}).done(function( data ) {
+	console.log(data)
+});
 });
 
 });
