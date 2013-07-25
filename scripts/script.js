@@ -1,4 +1,10 @@
-		$(document).ready(function() {
+	var zippolygon = [];
+	// var zipcoords defines the array to hold all of the coordinates data   
+	var zipcoords = [];
+
+	var zipHTML = [];
+
+$(document).ready(function() {
 // Defines the UI filters
 $("#circulation-selector").multiselect({
 	selectedText: "# of # selected",
@@ -69,9 +75,6 @@ $.ajax({
   data: { state: this.value
   }
 }).done(function( data ) {
-  for (var i = 0; i < zippolygon.length; i++) {
-    zippolygon[i].setMap(null);
-  }
 ajaxCall(data);
 });
 
@@ -85,12 +88,13 @@ $.ajax({
 ajaxCall(data);
 });
 function ajaxCall(data) {
+if(zippolygon.length > 1) {
+  for (var i = 0; i < zippolygon.length; i++) {
+    zippolygon[i].setMap(null);
+    console.log()
+  }
+}
 	// var zippolygon defines the array to hold all of the polygons   
-	var zippolygon = [];
-	// var zipcoords defines the array to hold all of the coordinates data   
-	var zipcoords = [];
-
-	var zipHTML = [];
 
 			// LOOP for each of the circulation areas (children of the response)  
 			$(data).children('response').children('area').each(function() {
