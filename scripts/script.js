@@ -18,20 +18,6 @@ $("#states-selector").multiselect({
 	multiple: false
 }).multiselectfilter();
 
-$("#states-selector").change( function() {
-  console.log(this.value);
-  
-$.ajax({
-  type: "POST",
-  url: "xmlgenerator.php",
-  data: { state: this.value
-  }
-}).done(function( data ) {
-ajaxCall(data);
-});
-
-
-});
 
 });
 // function initialize is loaded towards the bottom on window load with this line:
@@ -74,6 +60,21 @@ $(".open-link").click(function() {
 }
 
 function initialize() {
+$("#states-selector").change( function() {
+  console.log(this.value);
+  
+$.ajax({
+  type: "POST",
+  url: "xmlgenerator.php",
+  data: { state: this.value
+  }
+}).done(function( data ) {
+ajaxCall(data);
+});
+
+
+});
+
 $.ajax({
   type: "POST",
   url: "xmlgenerator.php"
