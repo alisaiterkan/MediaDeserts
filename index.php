@@ -151,9 +151,7 @@ foreach ($states as $abbrv => &$fullname) {
 		  		
 		  	  <div id="map"></div>
 		  	  <div id="sidebar" class="hidden">
-			  	<div class="content"></div>
-		  	  
-		  	  </div>
+				</div>
 		  	  <div id="footerInfo">
 		  	  <div id="scale" class="cf">
 		  	  		  	  <div id="mover"></div><div id="scalefiller"></div>
