@@ -88,11 +88,9 @@ $.ajax({
 ajaxCall(data);
 });
 function ajaxCall(data) {
+
 if(zippolygon.length > 1) {
-  for (var i = 0; i < zippolygon.length; i++) {
-    zippolygon[i].setMap(null);
-    console.log()
-  }
+    console.log(zippolygon)
 }
 	// var zippolygon defines the array to hold all of the polygons   
 
