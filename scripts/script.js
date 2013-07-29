@@ -330,6 +330,7 @@ if(zippolygon.length > 1) {
 				var reportData = {};
 				var reportHTML = "";
 				var infoHTML = "";
+				var homes = [];
 
 						var from = parseInt($(this).attr("from"));
 						// reportData.push($(this).text());
@@ -371,21 +372,28 @@ if(zippolygon.length > 1) {
 								htmlGroup.push(reportHTML);
 
 
-
-								infoHTML = infoHTML + "<table><td class='zipcode'>"+ reportData['zipcode'] +"</td>";
-								infoHTML = infoHTML + "<td class='OccupiedHomes'>" + reportData['occupiedhomes'] +"</td>";
-								infoHTML = infoHTML + "<td>IncomeLevel</td>";
-								infoHTML = infoHTML + "<td>EducationLevel</td>"
- 								infoHTML = infoHTML + "<td>Race</td>"
-								infoHTML = infoHTML + "<td>Age</td>"
-								infoHTML = infoHTML + "<td>FamilyTypes</td>"
-								infoHTML = infoHTML + "</table>";
-								zipDemographicsHTML[zipcode] = infoHTML;
+								homes.push([
+								reportData['occupiedhomes'], reportData['reportPeriod']
+								]);
+								
 
 				});
 				//ADD STATS into htmlGroup HERE
 
-				
+				infoHTML = infoHTML + "<table><td class='zipcode'>"+ reportData['zipcode'] +"</td>";
+				infoHTML = infoHTML + "<td class='occupied-homes'>Occupied Homes: ";
+				for (home in homes){
+					infoHTML = infoHTML + "<div class='homes-year-"+ home[1] +"'>" + home[0] + "</div>";
+				}
+				infoHTML = infoHTML + "<td>IncomeLevel</td>";
+				infoHTML = infoHTML + "<td>EducationLevel</td>"
+				infoHTML = infoHTML + "<td>Race</td>"
+				infoHTML = infoHTML + "<td>Age</td>"
+				infoHTML = infoHTML + "<td>FamilyTypes</td>"
+				infoHTML = infoHTML + "</table>";
+				zipDemographicsHTML[zipcode] = infoHTML;
+
+
 				zipReportsHTML[zipcode] = htmlGroup;				
 
 				google.maps.event.addDomListener(zippolygon[zipcode], "mouseover", function(){
