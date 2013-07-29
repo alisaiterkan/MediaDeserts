@@ -97,7 +97,7 @@ function mouseoutPolygon(zipCode){
 			});
 			}
 }
-function clickPolygon(zipCode, reportHTML){
+function clickPolygon(zipCode, reportHTML, infoHTML){
 	if(currentpolygon !== null) {
 	currentpolygon.setOptions({
 				strokeOpacity: 0.1,
@@ -384,7 +384,7 @@ if(zippolygon.length > 1) {
 				google.maps.event.addDomListener(zippolygon[zipcode], "mouseout", function(){
 					mouseoutPolygon(zippolygon[zipcode])});
 				google.maps.event.addDomListener(zippolygon[zipcode], "click", function(){
-					clickPolygon(zippolygon[zipcode], zipHTML[zipcode])});
+					clickPolygon(zippolygon[zipcode], zipHTML[zipcode], infoHTML)});
 			});
 		$('body').addClass("loading"); $( "#loading-modal" ).dialog( "close" );
 
