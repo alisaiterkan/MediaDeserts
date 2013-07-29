@@ -375,9 +375,9 @@ if(zippolygon.length > 1) {
 								htmlGroup.push(reportHTML);
 
 
-								homes.push(
+								homes.push([
 								reportData['occupiedhomes'], reportData['reportPeriod']
-								);
+								]);
 								
 
 				});
@@ -387,8 +387,8 @@ if(zippolygon.length > 1) {
 				infoHTML = infoHTML + "<table><td class='zipcode'>"+ zipcode +"</td>";
 				infoHTML = infoHTML + "<td class='occupied-homes'>Occupied Homes: ";
 				
-				for (home in homes){
-					console.log(home);
+				for (var i = 0; i < homes.length; i++) {
+					console.log(homes[i]);
 					infoHTML = infoHTML + "<div class='homes-year-"+ home[1] +"'>" + home[0] + "</div>";
 				}
 				infoHTML = infoHTML + "<td>IncomeLevel</td>";
