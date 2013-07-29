@@ -322,17 +322,18 @@ if(zippolygon.length > 1) {
 				});
 				zippolygon[zipcode].setMap(map);
 				
-								var reportGroup = [];
+				var reportGroup = [];
 				var htmlGroup = [];
 				var infobarGroup = [];				
 				var i = 0;
 				var infoHTML = "";
+				var homes = [];
 
 				$(thisRow).children('reports').children('report').each(function() {
 				var reportData = {};
 				var reportHTML = "";
 				
-				var homes = [];
+				
 
 						var from = parseInt($(this).attr("from"));
 						// reportData.push($(this).text());
