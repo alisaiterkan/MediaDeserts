@@ -120,6 +120,9 @@ $(".open-link").click(function() {
 	$(this).children(".open-link-status").text('-');
 });
 
+$('#infobar').html("<table><td><tr>Zipcode</tr></td></table>");
+
+
 
 }
 
