@@ -326,10 +326,12 @@ if(zippolygon.length > 1) {
 				var htmlGroup = [];
 				var infobarGroup = [];				
 				var i = 0;
+				var infoHTML = "";
+
 				$(thisRow).children('reports').children('report').each(function() {
 				var reportData = {};
 				var reportHTML = "";
-				var infoHTML = "";
+				
 				var homes = [];
 
 						var from = parseInt($(this).attr("from"));
