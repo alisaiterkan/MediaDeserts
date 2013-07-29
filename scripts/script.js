@@ -1,4 +1,4 @@
-	var userState = "VA";
+	var userState = "RI";
 	
 	var chosenState = null;
 	
@@ -120,7 +120,7 @@ $(".open-link").click(function() {
 	$(this).children(".open-link-status").text('-');
 });
 
-$('#infobar').html(infoHTML);
+$('#infotable').html(infoHTML);
 
 
 }
