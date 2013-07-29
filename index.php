@@ -174,7 +174,9 @@ foreach ($states as $abbrv => &$fullname) {
 		  	  
 		  	  </div>
 		  	  
-		  	  <div id="infobar" class="cf"><div id="infobarplaceholder">Click on a circulation area for more information.</div></div>
+		  	  <div id="infobar" class="cf">
+				
+				
 		  	  </div>
 	  </section>
 	  
