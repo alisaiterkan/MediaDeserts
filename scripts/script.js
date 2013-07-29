@@ -98,7 +98,6 @@ function mouseoutPolygon(zipCode){
 				strokeWeight: 1
 			});
 			}
-	$('#infotable').html("Click on a zipcode to see dempographics information");
 }
 function clickPolygon(zipCode, reportHTML, infoHTML){
 	if(currentpolygon !== null) {
@@ -106,7 +105,10 @@ function clickPolygon(zipCode, reportHTML, infoHTML){
 				strokeOpacity: 0.1,
 				fillOpacity: .70,
 				strokeWeight: 1
+
 			});
+
+	$('#infotable').html("Click on a zipcode to see dempographics information");
 }
 	currentpolygon = zipCode;
 	zipCode.setOptions({
