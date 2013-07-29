@@ -381,8 +381,9 @@ if(zippolygon.length > 1) {
 
 				});
 				//ADD STATS into htmlGroup HERE
+				zipReportsHTML[zipcode] = htmlGroup;	
 
-				infoHTML = infoHTML + "<table><td class='zipcode'>"+ reportData['zipcode'] +"</td>";
+				infoHTML = infoHTML + "<table><td class='zipcode'>"+ zipcode +"</td>";
 				infoHTML = infoHTML + "<td class='occupied-homes'>Occupied Homes: ";
 				for (home in homes){
 					infoHTML = infoHTML + "<div class='homes-year-"+ home[1] +"'>" + home[0] + "</div>";
@@ -396,7 +397,7 @@ if(zippolygon.length > 1) {
 				zipDemographicsHTML[zipcode] = infoHTML;
 
 
-				zipReportsHTML[zipcode] = htmlGroup;				
+								
 
 				google.maps.event.addDomListener(zippolygon[zipcode], "mouseover", function(){
 					mouseoverPolygon(zippolygon[zipcode])});
