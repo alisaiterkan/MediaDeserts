@@ -120,8 +120,7 @@ $(".open-link").click(function() {
 	$(this).children(".open-link-status").text('-');
 });
 
-$('#infobarplaceholder').html("<table><td>Zipcode:</td><td>OccupiedHomesPH</td><td>IncomeLevel</td><td>EducationLevel</td><td>Race</td><td>Age</td><td>FamilyTypes</td></table>");
-
+$('#infobarplaceholder').html(infoHTML);
 
 
 }
@@ -324,6 +323,7 @@ if(zippolygon.length > 1) {
 				$(thisRow).children('reports').children('report').each(function() {
 				var reportData = {};
 				var reportHTML = "";
+				var infoHTML = "";
 
 						var from = parseInt($(this).attr("from"));
 						// reportData.push($(this).text());
@@ -364,6 +364,16 @@ if(zippolygon.length > 1) {
 								reportHTML = reportHTML + "</div>";
 								reportHTML = reportHTML + "</div>";
 								htmlGroup.push(reportHTML);
+
+								infoHTML = infoHTML + "<table><td class='zipcode'>"+ reportData['zipcode'] +"</td>";
+								infoHTML = infoHTML + "<td class='OccupiedHomes'>" + reportData['occupiedhomes'] +"</td>";
+								infoHTML = infoHTML + "<td>IncomeLevel</td>";
+								infoHTML = infoHTML + "<td>EducationLevel</td>"
+ 								infoHTML = infoHTML + "<td>Race</td>"
+								infoHTML = infoHTML + "<td>Age</td>"
+								infoHTML = infoHTML + "<td>FamilyTypes</td>"
+								infoHTML = infoHTML + "</table>";
+
 				});
 				//ADD STATS into htmlGroup HERE
 
