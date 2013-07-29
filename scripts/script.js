@@ -375,9 +375,9 @@ if(zippolygon.length > 1) {
 								htmlGroup.push(reportHTML);
 
 
-								homes.push([
+								homes.push(
 								reportData['occupiedhomes'], reportData['reportPeriod']
-								]);
+								);
 								
 
 				});
