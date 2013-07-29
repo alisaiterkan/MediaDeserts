@@ -120,7 +120,7 @@ $(".open-link").click(function() {
 	$(this).children(".open-link-status").text('-');
 });
 
-$('#infobarplaceholder').html("<table><td><tr>Zipcode</tr></td></table>");
+$('#infobarplaceholder').html("<table><td>Zipcode:</td><td>OccupiedHomesPH</td><td>IncomeLevel</td><td>EducationLevel</td>Race</td><td>Age</td><td>FamilyTypes</td></table>");
 
 
 
