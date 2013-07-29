@@ -389,7 +389,7 @@ if(zippolygon.length > 1) {
 				
 				for (var i = 0; i < homes.length; i++) {
 					console.log(homes[i]);
-					infoHTML = infoHTML + "<div class='homes-year-"+ home[1] +"'>" + home[0] + "</div>";
+					infoHTML = infoHTML + "<div class='homes-year-"+ homes[1] +"'>" + homes[0] + "</div>";
 				}
 				infoHTML = infoHTML + "<td>IncomeLevel</td>";
 				infoHTML = infoHTML + "<td>EducationLevel</td>"
