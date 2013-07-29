@@ -506,7 +506,7 @@ if(zippolygon.length > 1) {
 				strokeOpacity: 0.1,
 				fillOpacity: .70
 			});
-			jQuery('#infobar').html('<div id="infobarplaceholder">No publications cover the selected area</div>');
+			jQuery('#infotable').html('No publications cover the selected area');
 		}
 	});
 	map.mapTypes.set('map_style', styledMap);
