@@ -120,7 +120,7 @@ $(".open-link").click(function() {
 	$(this).children(".open-link-status").text('-');
 });
 
-$('#infobarplaceholder').html(infoHTML);
+$('#infobar').html(infoHTML);
 
 
 }
