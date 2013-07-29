@@ -386,8 +386,9 @@ if(zippolygon.length > 1) {
 
 				infoHTML = infoHTML + "<table><td class='zipcode'>"+ zipcode +"</td>";
 				infoHTML = infoHTML + "<td class='occupied-homes'>Occupied Homes: ";
-				console.log(homes);
+				
 				for (home in homes){
+					console.log(home);
 					infoHTML = infoHTML + "<div class='homes-year-"+ home[1] +"'>" + home[0] + "</div>";
 				}
 				infoHTML = infoHTML + "<td>IncomeLevel</td>";
