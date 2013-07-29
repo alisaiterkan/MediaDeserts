@@ -1,3 +1,15 @@
+	var userState = "NC";
+	
+	var chosenState = null;
+	
+	var lat_lng = new google.maps.LatLng(35.6006, -79.4508);
+	
+	var map = null;
+	
+	var geocoder;
+
+	var currentpolygon = null;
+	
 	var zippolygon = [];
 	// var zipcoords defines the array to hold all of the coordinates data   
 	var zipcoords = [];
@@ -21,9 +33,43 @@ $("#publications-selector").multiselect({
 $("#states-selector").multiselect({
 	selectedText: "# of # selected",
 	minWidth: 'auto',
-	multiple: false
+	multiple: false,
+	selectedList: 4
 }).multiselectfilter();
+$(function() {
 
+	$( "#loading-modal" ).dialog({
+      autoOpen: false,
+      height:140,
+      modal:true,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      }
+
+    });
+
+});
+
+if(google.loader.ClientLocation)
+	{
+	    visitor_lat = google.loader.ClientLocation.latitude;
+	    visitor_lon = google.loader.ClientLocation.longitude;
+	    visitor_city = google.loader.ClientLocation.address.city;
+	    visitor_region = google.loader.ClientLocation.address.region;
+	    visitor_country = google.loader.ClientLocation.address.country;
+	    visitor_countrycode = google.loader.ClientLocation.address.country_code;
+	    console.log(visitor_country + " " + visitor_region);
+	    if(visitor_country == "USA") {
+	    	userState = visitor_region;
+	    	lat_lng = new google.maps.LatLng(visitor_lat, visitor_lon);
+		    $('#states-selector option[value="' + visitor_region + '"]').attr("selected", "selected");
+	    }
+	}
 
 });
 // function initialize is loaded towards the bottom on window load with this line:
@@ -34,28 +80,40 @@ $("#states-selector").multiselect({
 
 
 function mouseoverPolygon(zipCode){
+	if(currentpolygon !== zipCode) {
 	zipCode.setOptions({
 				strokeOpacity: 0.5,
-				fillOpacity: .90
+				fillOpacity: .90,
+				strokeWeight: 1
 			});
+			}
 }
 function mouseoutPolygon(zipCode){
+	if(currentpolygon !== zipCode) {
 	zipCode.setOptions({
 				strokeOpacity: 0.1,
-				fillOpacity: .70
+				fillOpacity: .70,
+				strokeWeight: 1
 			});
+			}
 }
 function clickPolygon(zipCode, reportHTML){
-console.log(reportHTML);
-	zipCode.setOptions({
+	if(currentpolygon !== null) {
+	currentpolygon.setOptions({
 				strokeOpacity: 0.1,
+				fillOpacity: .70,
+				strokeWeight: 1
+			});
+}
+	currentpolygon = zipCode;
+	zipCode.setOptions({
+				strokeOpacity: 1,
 				strokeWeight: 2,
 				fillOpacity: 1
 			});
 
 $('#sidebar').html(reportHTML);
 $(".open-link").click(function() {
-	console.log("logged");
    	$(".open-link-status").text('+');
    	$(".newspaper-content").addClass('hidden');
 	$(this).siblings(".newspaper-content").removeClass('hidden');
@@ -66,31 +124,78 @@ $(".open-link").click(function() {
 }
 
 function initialize() {
+geocoder = new google.maps.Geocoder();
+
 $("#states-selector").change( function() {
-  console.log(this.value);
+  	$('body').addClass("loading"); $( "#loading-modal" ).dialog( "open" );
+
+  	chosenState = this.value;
+console.log(chosenState);
+
+$.ajax({
+  type: "POST",
+  url: "xmlgenerator.php",
+  data: { state: chosenState
+  }
+}).done(function( data ) {
+
+geocoder.geocode( {'address' : chosenState}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+    console.log(results[0].geometry.location);
+        map.setCenter(results[0].geometry.location);
+        map.setZoom(8);
+    }
+});
+
+
+    for(var key in zippolygon)
+    {
+	    zippolygon[key].setMap(null);
+    }
+
+
+
+ajaxCall(data);
+});
+
+
+});
+$("#publications-selector").change( function() {
   
 $.ajax({
   type: "POST",
   url: "xmlgenerator.php",
-  data: { state: this.value
+  data: { publication: this.value
   }
 }).done(function( data ) {
+
+
+    for(var key in zippolygon)
+    {
+	    zippolygon[key].setMap(null);
+    }
+
+
+
 ajaxCall(data);
 });
 
 
 });
+	$('body').addClass("loading"); $( "#loading-modal" ).dialog( "open" );
 
 $.ajax({
   type: "POST",
-  url: "xmlgenerator.php"
+  url: "xmlgenerator.php",
+  data: { state: userState
+  }
 }).done(function( data ) {
-ajaxCall(data);
+	ajaxCall(data);
 });
 function ajaxCall(data) {
+	$('body').addClass("loading"); $( "#loading-modal" ).dialog( "open" );
 
 if(zippolygon.length > 1) {
-    console.log(zippolygon)
 }
 	// var zippolygon defines the array to hold all of the polygons   
 
@@ -100,56 +205,6 @@ if(zippolygon.length > 1) {
 				var thisRow = this;
 				// var zipcode stores the number of the zipcode from the circulation area
 				var zipcode = $(thisRow).children('zipcode').text();
-				var reportGroup = [];
-				var htmlGroup = [];				
-				var i = 0;
-				$(thisRow).children('reports').children('report').each(function() {
-				var reportData = {};
-				var reportHTML = "";
-
-						var from = parseInt($(this).attr("from"));
-						// reportData.push($(this).text());
-								
-
-							 	reportData['zipcode'] = parseInt(zipcode, 10);
-							 	reportData['reportPeriod'] = parseInt($(this).attr("from"), 10);
-							 	reportData['reportDate'] = $(this).attr("date");
-							 	reportData['name'] = $(this).children("name").text();
-							 	reportData['additionaldescription'] = $(this).children("additionaldescription").text();
-							 	reportData['combinedaverage'] = parseInt($(this).children("combinedaverage").text(), 10);
-							 	reportData['combinedsundaycirculation'] = parseInt($(this).children("combinedsundaycirculation").text(), 10);
-							 	reportData['frequency'] = $(this).children("frequency").text();
-							 	reportData['fridaycirculation'] = parseInt($(this).children("fridaycirculation").text(), 10);
-							 	reportData['mondaycirculation'] = parseInt($(this).children("mondaycirculation").text(), 10);
-							 	reportData['paperid'] = parseInt($(this).children("paperid").text(), 10);
-							 	reportData['saturdaycirculation'] = parseInt($(this).children("saturdaycirculation").text(), 10);
-							 	reportData['sundaycirculation'] = parseInt($(this).children("sundaycirculation").text(), 10) + parseInt($(this).children("combinedsundaycirculation").text(), 10);
-							 	reportData['thursdaycirculation'] = parseInt($(this).children("thursdaycirculation").text(), 10);
-							 	reportData['tuesdaycirculation'] = parseInt($(this).children("tuesdaycirculation").text(), 10);
-							 	reportData['tuesdaycirculation'] = parseInt($(this).children("tuesdaycirculation").text(), 10);
-							 	reportData['wednesdaycirculation'] = parseInt($(this).children("wednesdaycirculation").text(), 10);
-							 	reportData['occupiedhomes'] = parseFloat($(this).children("occupiedhomes").text());
-
-
-								reportGroup.push(reportData);
-
-								
-								reportHTML = reportHTML + "<div class='newspaper-group newspaper-" + reportData['paperid'] + "'>";
-								reportHTML = reportHTML + "<p class='open-link'><span class='open-link-newspaper-name'>" + reportData['name'] + "</span> <span class='open-link-report-date'>(" + reportData['reportPeriod'] + ")</span><span class='open-link-status'>+</span></p>";
-								reportHTML = reportHTML + "<div class='newspaper-content hidden'> ";
-								reportHTML = reportHTML + "<h3>Report Taken: " + reportData['reportDate'] + "</h3>";
-								reportHTML = reportHTML + "<table><thead><td>Avg. Daily</td><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td><td>Sun</td></thead>";
-								reportHTML = reportHTML + "<tr><td>" + reportData['combinedaverage'] + "</td><td>" + reportData['mondaycirculation'] + "</td><td>" + reportData['tuesdaycirculation'] + "</td><td>" + reportData['wednesdaycirculation'] + "</td><td>" + reportData['thursdaycirculation'] + "</td><td>" + reportData['fridaycirculation'] + "</td><td>" + reportData['saturdaycirculation'] + "</td><td>" + reportData['sundaycirculation'] + "</td></tr></table>";
-								reportHTML = reportHTML + "";
-								reportHTML = reportHTML + "<h3>" + "Occupied Homes: " + reportData['occupiedhomes'] + "<h3>";
-								reportHTML = reportHTML + "";								
-								reportHTML = reportHTML + "</div>";
-								reportHTML = reportHTML + "</div>";
-								htmlGroup.push(reportHTML);
-				});
-				//ADD STATS into htmlGroup HERE
-
-				zipHTML[zipcode] = htmlGroup;				
 				// if there is only one polygon for the zipcode...
 				if ($(thisRow).children('geometry').children('Polygon')) {
 						// var polygonOuterBoundary sets up the array to be used in the following loop
@@ -259,6 +314,58 @@ if(zippolygon.length > 1) {
 					fillOpacity: 0.70
 				});
 				zippolygon[zipcode].setMap(map);
+				
+								var reportGroup = [];
+				var htmlGroup = [];				
+				var i = 0;
+				$(thisRow).children('reports').children('report').each(function() {
+				var reportData = {};
+				var reportHTML = "";
+
+						var from = parseInt($(this).attr("from"));
+						// reportData.push($(this).text());
+								
+
+							 	reportData['zipcode'] = parseInt(zipcode, 10);
+							 	reportData['reportPeriod'] = parseInt($(this).attr("from"), 10);
+							 	reportData['reportDate'] = $(this).attr("date");
+							 	reportData['name'] = $(this).children("name").text();
+							 	reportData['additionaldescription'] = $(this).children("additionaldescription").text();
+							 	reportData['combinedaverage'] = parseInt($(this).children("combinedaverage").text(), 10);
+							 	reportData['combinedsundaycirculation'] = parseInt($(this).children("combinedsundaycirculation").text(), 10);
+							 	reportData['frequency'] = $(this).children("frequency").text();
+							 	reportData['fridaycirculation'] = parseInt($(this).children("fridaycirculation").text(), 10);
+							 	reportData['mondaycirculation'] = parseInt($(this).children("mondaycirculation").text(), 10);
+							 	reportData['paperid'] = parseInt($(this).children("paperid").text(), 10);
+							 	reportData['saturdaycirculation'] = parseInt($(this).children("saturdaycirculation").text(), 10);
+							 	reportData['sundaycirculation'] = parseInt($(this).children("sundaycirculation").text(), 10) + parseInt($(this).children("combinedsundaycirculation").text(), 10);
+							 	reportData['thursdaycirculation'] = parseInt($(this).children("thursdaycirculation").text(), 10);
+							 	reportData['tuesdaycirculation'] = parseInt($(this).children("tuesdaycirculation").text(), 10);
+							 	reportData['tuesdaycirculation'] = parseInt($(this).children("tuesdaycirculation").text(), 10);
+							 	reportData['wednesdaycirculation'] = parseInt($(this).children("wednesdaycirculation").text(), 10);
+							 	reportData['occupiedhomes'] = parseFloat($(this).children("occupiedhomes").text());
+
+
+								reportGroup.push(reportData);
+
+								
+								reportHTML = reportHTML + "<div class='newspaper-group newspaper-" + reportData['paperid'] + "'>";
+								reportHTML = reportHTML + "<p class='open-link'><span class='open-link-newspaper-name'>" + reportData['name'] + "</span> <span class='open-link-report-date'>(" + reportData['reportPeriod'] + ")</span><span class='open-link-status'>+</span></p>";
+								reportHTML = reportHTML + "<div class='newspaper-content hidden'> ";
+								reportHTML = reportHTML + "<h3>Report Taken: " + reportData['reportDate'] + "</h3>";
+								reportHTML = reportHTML + "<table><thead><td>Avg. Daily</td><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td><td>Sun</td></thead>";
+								reportHTML = reportHTML + "<tr><td>" + reportData['combinedaverage'] + "</td><td>" + reportData['mondaycirculation'] + "</td><td>" + reportData['tuesdaycirculation'] + "</td><td>" + reportData['wednesdaycirculation'] + "</td><td>" + reportData['thursdaycirculation'] + "</td><td>" + reportData['fridaycirculation'] + "</td><td>" + reportData['saturdaycirculation'] + "</td><td>" + reportData['sundaycirculation'] + "</td></tr></table>";
+								reportHTML = reportHTML + "";
+								reportHTML = reportHTML + "<h3>" + "Occupied Homes: " + reportData['occupiedhomes'] + "<h3>";
+								reportHTML = reportHTML + "";								
+								reportHTML = reportHTML + "</div>";
+								reportHTML = reportHTML + "</div>";
+								htmlGroup.push(reportHTML);
+				});
+				//ADD STATS into htmlGroup HERE
+
+				zipHTML[zipcode] = htmlGroup;				
+
 				google.maps.event.addDomListener(zippolygon[zipcode], "mouseover", function(){
 					mouseoverPolygon(zippolygon[zipcode])});
 				google.maps.event.addDomListener(zippolygon[zipcode], "mouseout", function(){
@@ -266,7 +373,7 @@ if(zippolygon.length > 1) {
 				google.maps.event.addDomListener(zippolygon[zipcode], "click", function(){
 					clickPolygon(zippolygon[zipcode], zipHTML[zipcode])});
 			});
-		$('#map').removeClass("loading");
+		$('body').addClass("loading"); $( "#loading-modal" ).dialog( "close" );
 
 }
 	// var oldZip is used for keeping tracking of the activated polygon 
@@ -353,28 +460,26 @@ if(zippolygon.length > 1) {
 		name: "Styled Map"
 	});
 	// var center defines the central point of map on load, right now it's focused on NC
-	var center = new google.maps.LatLng(35.6006, -79.4508);
 	// var mapOptions sets the map settings   
 	var mapOptions = {
 		zoom: 7,
-		center: center,
+		center: lat_lng,
 		mapTypeId: 'map_style',
 		mapTypeControlOptions: {
 			mapTypeIds: ['map_style']
 		}
 	}
 	// var map finds the HTML element with the ID #map and loads the map into it   
-	var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-	// Adds an opacity to the map to signify loading
-	$('#map').addClass("loading");
-	ajaxCall();
+	map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+	// ajaxCall();
 	// the $.get function is used to make an AJAX call using jQuery to the xmlgenerator.php file that contains the XML  
 	google.maps.event.addListener(map, 'click', function() {
-		if (oldZip != null) {
+		if (currentpolygon !== null) {
 			jQuery('#mover').animate({
 				top: '-30px'
 			});
-			oldZip.setOptions({
+			currentpolygon.setOptions({
 				strokeOpacity: 0.1,
 				fillOpacity: .70
 			});

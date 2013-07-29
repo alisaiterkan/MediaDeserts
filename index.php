@@ -16,14 +16,18 @@ include_once("/home/mediadeserts/secure/connection.php");
   <body>
   <div id="page-wrapper" class="body row scroll-y">
 	  
-	  <header>
-		  
-		  <h1>Media Deserts</h1>
-		  <h2>Finding communities that lack access to fresh local news and information</h2>
-		  
-		  <div id="filters">
-			  <form>
+	  <header class="cf">
+		  	<div id="logo">
+			  	<img src="logo.png" height="140" alt="Media Deserts: Communities that lack access to fresh local news and information" title="Media Deserts: Communities that lack access to fresh local news and information" style="max-width:100%;">
+		  	</div>
+			<form id="filters">
 			  	<div class="col col8">
+			  	<div class="checkbox-ui-group">
+			  		<input type="checkbox" name="stateView" value="stateView"><label for="stateView">State View</label>
+			  	</div>
+			  	<div class="checkbox-ui-group">
+			  		<input type="checkbox" name="publicationView" value="publicationView"><label for="publicationView">Publication View</label>
+			  	</div>
 			  	</div>
 			  	<div class="col col8">
 			  	<label for="states">States</label>
@@ -92,11 +96,11 @@ foreach ($states as $abbrv => &$fullname) {
 			  	<label for="publications">Publications</label>
 				  	<select name="publications" id="publications-selector" multiple>
 					  	<?
-					  	$newspaperTypes = mysqli_query($con,"SELECT type FROM newspapers GROUP BY type;");
+					  	$newspaperTypes = mysqli_query($con,"SELECT type, state FROM newspapers GROUP BY state;");
 					  	while($row = mysqli_fetch_array($newspaperTypes))
 						  {
-							  echo "<optgroup label='". $row['type'] ."'>";
-					  	$newspapers = mysqli_query($con,"SELECT * FROM newspapers WHERE type ='" . $row['type'] . "';");
+							  echo "<optgroup label='". $row['state'] ."'>";
+					  	$newspapers = mysqli_query($con,"SELECT * FROM newspapers WHERE state ='" . $row['state'] . "';");
 
 					  	while($row = mysqli_fetch_array($newspapers))
 						  {
@@ -135,18 +139,10 @@ foreach ($states as $abbrv => &$fullname) {
 						<option value="3">Combined Average</option>
 					</select>
 			  	</div>
-			  	<div class="col col8">
-			  	</div>
-			  	<div class="col col8">
-			  	</div>
-			  	<div class="col col8">
-			  	</div>
 			  </form>
-		  </div>
-		  
 	  </header>
 	  
-	  <section id="content">
+	  <section id="content" class="cf">
 		  		<div id="loadingtext">Loading...</div>
 		  		
 		  	  <div id="map"></div>
@@ -186,15 +182,16 @@ foreach ($states as $abbrv => &$fullname) {
 	  
 
   </div>
+<div id="loading-modal" title="Loading">
+  <p>Loading...</p>
+</div>
 
     <script src="scripts/jquery.js"></script>
     <script src="scripts/jquery-ui.js"></script>
     <script src="scripts/jquery-multipleselect.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqhj4sutTn567eZrFQs1hVJUMXsF7gWLI&sensor=true"></script>
     <script src="scripts/shadowbox/shadowbox.js"></script>
+    <script src="http://www.google.com/jsapi"></script>
     <script src="scripts/script.js"></script>
-    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-
-
   </body>
 </html>
