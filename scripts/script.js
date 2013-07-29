@@ -16,6 +16,8 @@
 
 	var zipHTML = [];
 
+	var infoHTML = [];
+
 $(document).ready(function() {
 // Defines the UI filters
 $("#circulation-selector").multiselect({
@@ -318,7 +320,8 @@ if(zippolygon.length > 1) {
 				zippolygon[zipcode].setMap(map);
 				
 								var reportGroup = [];
-				var htmlGroup = [];				
+				var htmlGroup = [];
+				var infobarGroup = [];				
 				var i = 0;
 				$(thisRow).children('reports').children('report').each(function() {
 				var reportData = {};
@@ -348,7 +351,6 @@ if(zippolygon.length > 1) {
 							 	reportData['wednesdaycirculation'] = parseInt($(this).children("wednesdaycirculation").text(), 10);
 							 	reportData['occupiedhomes'] = parseFloat($(this).children("occupiedhomes").text());
 
-
 								reportGroup.push(reportData);
 
 								
@@ -365,6 +367,8 @@ if(zippolygon.length > 1) {
 								reportHTML = reportHTML + "</div>";
 								htmlGroup.push(reportHTML);
 
+
+
 								infoHTML = infoHTML + "<table><td class='zipcode'>"+ reportData['zipcode'] +"</td>";
 								infoHTML = infoHTML + "<td class='OccupiedHomes'>" + reportData['occupiedhomes'] +"</td>";
 								infoHTML = infoHTML + "<td>IncomeLevel</td>";
@@ -373,10 +377,13 @@ if(zippolygon.length > 1) {
 								infoHTML = infoHTML + "<td>Age</td>"
 								infoHTML = infoHTML + "<td>FamilyTypes</td>"
 								infoHTML = infoHTML + "</table>";
+								infobarGroup.push(infoHTML);
+
 
 				});
 				//ADD STATS into htmlGroup HERE
 
+				infoHTML[zipcode] = infobarGroup;
 				zipHTML[zipcode] = htmlGroup;				
 
 				google.maps.event.addDomListener(zippolygon[zipcode], "mouseover", function(){
@@ -384,7 +391,7 @@ if(zippolygon.length > 1) {
 				google.maps.event.addDomListener(zippolygon[zipcode], "mouseout", function(){
 					mouseoutPolygon(zippolygon[zipcode])});
 				google.maps.event.addDomListener(zippolygon[zipcode], "click", function(){
-					clickPolygon(zippolygon[zipcode], zipHTML[zipcode], infoHTML)});
+					clickPolygon(zippolygon[zipcode], zipHTML[zipcode], infoHTML[zipcode])});
 			});
 		$('body').addClass("loading"); $( "#loading-modal" ).dialog( "close" );
 
