@@ -330,7 +330,7 @@ if(zippolygon.length > 1) {
 				var homes = [];
 
 				
-				infobarGroup['population'] = parseInt($(this).attr("population"), 10);
+				infobarGroup['population'] = ($(this).attr("population"), .text());
 				infobarGroup['medianAge'] = parseInt($(this).attr("medianAge"), 10);
 				infobarGroup['pctBachelors'] = parseInt($(this).attr("pctBachelors"), 10);
 				infobarGroup['pctUnemployed'] = parseInt($(this).attr("pctUnemployed"), 10);
