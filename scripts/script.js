@@ -410,6 +410,7 @@ if(zippolygon.length > 1) {
 				//	infoHTML = infoHTML + "<div class='homes-year-"+ homes[1] +"'>" + homes[0] + "</div>";
 				//}
 				infoHTML = infoHTML + "<td>Population:" + infobarGroup['population'] + "</td>";
+			console.log(infobarGroup['population'];
 				infoHTML = infoHTML + "<td>EducationLevel</td>"
 				infoHTML = infoHTML + "<td>Race</td>"
 				infoHTML = infoHTML + "<td>Age</td>"
@@ -421,7 +422,7 @@ if(zippolygon.length > 1) {
 								
 
 				google.maps.event.addDomListener(zippolygon[zipcode], "mouseover", function(){
-					mouseoverPolygon(zippolygon[zipcode])});
+					mouseoverPolygon(zippolygon[zipcode])})
 				google.maps.event.addDomListener(zippolygon[zipcode], "mouseout", function(){
 					mouseoutPolygon(zippolygon[zipcode])});
 				google.maps.event.addDomListener(zippolygon[zipcode], "click", function(){
