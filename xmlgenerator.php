@@ -89,12 +89,26 @@ while($area = mysqli_fetch_array($circulationAreaResults)) {
 		echo "<response>\n";
 
 // SQL SELECT COMMAND
-$circulationAreaResults = mysqli_query($con,"SELECT circulationAreas.zipcode, circulationAreas.occupiedHomes, sundayCirculation, combinedSundayCirculation, geometry FROM circulationAreas INNER JOIN zipcodes ON circulationAreas.zipcode = zipcodes.zipcode WHERE STATE='$state' GROUP BY zipcode ORDER BY circulationAreas.zipcode ASC;");
+$circulationAreaResults = mysqli_query($con,"SELECT circulationAreas.zipcode, circulationAreas.occupiedHomes, sundayCirculation, combinedSundayCirculation, geometry, demographics.population, demographics.medianAge, demographics.pctBachelors, demographics.pctUnemployed, demographics.income, demographics.households, demographics.householdSize, demographics.pctHousingOwned, demographics.pctHousingRented, demographics.pctHousingVacant, demographics.medianHomeValue, demographics.pctProjectedGrowth, demographics.pctHouseholdGrowth, demographics.pctIncomeGrowth FROM circulationAreas INNER JOIN zipcodes ON circulationAreas.zipcode = zipcodes.zipcode INNER JOIN demographics ON circulationAreas.zipcode = demographics.zipcode WHERE STATE='$state' GROUP BY zipcode ORDER BY circulationAreas.zipcode ASC;");
 
 while($area = mysqli_fetch_array($circulationAreaResults)) {
 
 //insert here
 		$zipcode = $area['zipcode'];
+		$population = $area['population'];
+		$medianAge = $area['medianAge'];
+		$pctBachelors = $area['pctBachelors'];
+		$pctUnemployed = $area['pctUnemployed'];
+		$income = $area['income'];
+		$households = $area['households'];
+		$householdSize = $area['householdSize'];
+		$pctHousingOwned = $area['pctHousingOwned'];
+		$pctHousingRented = $area['pctHousingRented'];
+		$pctHousingVacant = $area['pctHousingVacant'];
+		$medianHomeValue = $area['medianHomeValue'];
+		$pctProjectedGrowth = $area['pctProjectedGrowth'];
+		$pctHouseholdGrowth = $area['pctHouseholdGrowth'];
+		$pctIncomeGrowth = $area['pctIncomeGrowth'];
 		$geometry = $area['geometry'];
 		
 		echo "<area>\n";
@@ -102,6 +116,23 @@ while($area = mysqli_fetch_array($circulationAreaResults)) {
 			echo "<geometry>\n";
 echo $geometry;
 			echo "</geometry>\n";
+			
+			echo "<population>$population</population>\n";
+			echo "<medianAge>$medianAge</medianAge>\n";
+			echo "<pctBachelors>$pctBachelors</pctBachelors>\n";
+			echo "<pctUnemployed>$pctUnemployed</pctUnemployed>\n";			
+			echo "<income>$income</income>\n";
+			echo "<households>$households</households>\n";
+			echo "<householdSize>$householdSize</householdSize>\n";
+			echo "<pctHousingOwned>$pctHousingOwned</pctHousingOwned>\n";
+			echo "<pctHousingRented>$pctHousingRented</pctHousingRented>\n";
+			echo "<pctHousingVacant>$pctHousingVacant</pctHousingVacant>\n";
+			echo "<medianHomeValue>$medianHomeValue</medianHomeValue>\n";
+			echo "<pctProjectedGrowth>$pctProjectedGrowth</pctProjectedGrowth>\n";
+			echo "<pctHouseholdGrowth>$pctHouseholdGrowth</pctHouseholdGrowth>\n";
+			echo "<pctIncomeGrowth>$pctIncomeGrowth</pctIncomeGrowth>\n";
+
+			
 						$newspaperResults = mysqli_query($con,"SELECT fromReport, reportDate, newspapers.name name, newspapers.id newspaperID, newspapers.headquarters headquarters, newspapers.state hqState, frequency, additionalDescription, occupiedHomes, combinedDaily, combinedAverage, mondayCirculation, tuesdayCirculation, wednesdayCirculation, thursdayCirculation, fridayCirculation, saturdayCirculation, sundayCirculation, combinedSundayCirculation FROM circulationAreas INNER JOIN newspapers ON circulationAreas.newspaperID = newspapers.id WHERE circulationAreas.zipcode = $zipcode");
 								echo "<reports>";
 								$i = 0;
