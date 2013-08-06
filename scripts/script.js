@@ -329,6 +329,24 @@ if(zippolygon.length > 1) {
 				var infoHTML = "";
 				var homes = [];
 
+				
+				infobarGroup['population'] = parseInt($(this).attr("population"), 10);
+				infobarGroup['medianAge'] = parseInt($(this).attr("medianAge"), 10);
+				infobarGroup['pctBachelors'] = parseInt($(this).attr("pctBachelors"), 10);
+				infobarGroup['pctUnemployed'] = parseInt($(this).attr("pctUnemployed"), 10);
+				infobarGroup['income'] = parseInt($(this).attr("income"), 10);
+				infobarGroup['households'] = parseInt($(this).attr("households"), 10);
+				infobarGroup['householdSize'] = parseInt($(this).attr("householdSize"), 10);
+				infobarGroup['pctHousingOwned'] = parseInt($(this).attr("pctHousingOwned"), 10);
+				infobarGroup['pctHousingRented'] = parseInt($(this).attr("pctHousingRented"), 10);
+				infobarGroup['pctHousingVacant'] = parseInt($(this).attr("pctHousingVacant"), 10);
+				infobarGroup['medianHomeValue'] = parseInt($(this).attr("medianHomeValue"), 10);
+				infobarGroup['pctProjectedGrowth'] = parseInt($(this).attr("pctProjectedGrowth"), 10);
+				infobarGroup['pctHouseholdGrowth'] = parseInt($(this).attr("pctHouseholdGrowth"), 10);
+				infobarGroup['pctIncomeGrowth'] = parseInt($(this).attr("pctIncomeGrowth"), 10);
+
+
+
 				$(thisRow).children('reports').children('report').each(function() {
 				var reportData = {};
 				var reportHTML = "";
@@ -391,7 +409,7 @@ if(zippolygon.length > 1) {
 					console.log(homes[i]);
 					infoHTML = infoHTML + "<div class='homes-year-"+ homes[1] +"'>" + homes[0] + "</div>";
 				}
-				infoHTML = infoHTML + "<td>IncomeLevel</td>";
+				infoHTML = infoHTML + "<td>Population:" + infobarGroup['population'] + "</td>";
 				infoHTML = infoHTML + "<td>EducationLevel</td>"
 				infoHTML = infoHTML + "<td>Race</td>"
 				infoHTML = infoHTML + "<td>Age</td>"
