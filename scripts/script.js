@@ -405,10 +405,10 @@ if(zippolygon.length > 1) {
 				infoHTML = infoHTML + "<table><td class='zipcode'>"+ zipcode +"</td>";
 				infoHTML = infoHTML + "<td class='occupied-homes'>Occupied Homes: ";
 				
-				for (var i = 0; i < homes.length; i++) {
-					console.log(homes[i]);
-					infoHTML = infoHTML + "<div class='homes-year-"+ homes[1] +"'>" + homes[0] + "</div>";
-				}
+				//for (var i = 0; i < homes.length; i++) {
+				//	console.log(homes[i]);
+				//	infoHTML = infoHTML + "<div class='homes-year-"+ homes[1] +"'>" + homes[0] + "</div>";
+				//}
 				infoHTML = infoHTML + "<td>Population:" + infobarGroup['population'] + "</td>";
 				infoHTML = infoHTML + "<td>EducationLevel</td>"
 				infoHTML = infoHTML + "<td>Race</td>"
