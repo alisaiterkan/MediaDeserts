@@ -408,19 +408,19 @@ if(zippolygon.length > 1) {
 				infoHTML = infoHTML + "</td></tr>";
 				infoHTML = infoHTML + "<tr class='population'><td>Population</td><td>" + infobarGroup['population'];
 				infoHTML = infoHTML + "</td></tr>";
-				infoHTML = infoHTML + "<tr class='medianAge'><td>MedianAge</td><td>" + infobarGroup['medianAge']
+				infoHTML = infoHTML + "<tr class='medianAge'><td>MedianAge</td><td>" + infobarGroup['medianAge'];
 				infoHTML = infoHTML + "</td></tr>";
-				infoHTML = infoHTML + "<tr class='pctUnemployed'><td>Percent Unemployed</td><td>" + infobarGroup['pctUnemployed']
+				infoHTML = infoHTML + "<tr class='pctUnemployed'><td>Percent Unemployed</td><td>" + infobarGroup['pctUnemployed'];
 				infoHTML = infoHTML + "</td></tr>";
-				infoHTML = infoHTML + "<tr class='income'><td>Income</td><td>" + infobarGroup['income']
+				infoHTML = infoHTML + "<tr class='income'><td>Income</td><td>" + infobarGroup['income'];
 				infoHTML = infoHTML + "</td></tr>";
-				infoHTML = infoHTML + "<tr class='householdSize'><td>Avg Household Size/td><td>" + infobarGroup['householdSize']
+				infoHTML = infoHTML + "<tr class='householdSize'><td>Avg Household Size/td><td>" + infobarGroup['householdSize'];
 				infoHTML = infoHTML + "</td></tr>";
-				infoHTML = infoHTML + "<tr class='medianHomeValue'><td>Median Home Value</td><td>" + infobarGroup['medianHomeValue]
+				infoHTML = infoHTML + "<tr class='medianHomeValue'><td>Median Home Value</td><td>" + infobarGroup['medianHomeValue'];
 				infoHTML = infoHTML + "</td></tr>";
-				infoHTML = infoHTML + "<tr class='pctProjectedGrowth'><td>Projected Growth</td><td>" + infobarGroup['pctProjectedGrowth']
+				infoHTML = infoHTML + "<tr class='pctProjectedGrowth'><td>Projected Growth</td><td>" + infobarGroup['pctProjectedGrowth'];
 				infoHTML = infoHTML + "</td></tr>";
-				infoHTML = infoHTML + "<tr class='pctIncomeGrowth'><td>Income Growth</td><td>" + infobarGroup['pctIncomeGrowth']
+				infoHTML = infoHTML + "<tr class='pctIncomeGrowth'><td>Income Growth</td><td>" + infobarGroup['pctIncomeGrowth'];
 				infoHTML = infoHTML + "</td></tr>";
 				infoHTML = infoHTML + "</table>";
 				zipDemographicsHTML[zipcode] = infoHTML;
