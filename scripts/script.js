@@ -331,7 +331,7 @@ if(zippolygon.length > 1) {
 
 				
 				infobarGroup['population'] = $(this).children("population").text();
-				infobarGroup['medianAge'] = parseInt($(this).attr("medianAge"), 10);
+				infobarGroup['medianAge'] = $(this).children("medianAge").text();
 				infobarGroup['pctBachelors'] = parseInt($(this).attr("pctBachelors"), 10);
 				infobarGroup['pctUnemployed'] = parseInt($(this).attr("pctUnemployed"), 10);
 				infobarGroup['income'] = parseInt($(this).attr("income"), 10);
@@ -402,19 +402,26 @@ if(zippolygon.length > 1) {
 				//ADD STATS into htmlGroup HERE
 				zipReportsHTML[zipcode] = htmlGroup;	
 
-				infoHTML = infoHTML + "<table><td class='zipcode'>"+ zipcode +"</td>";
-				infoHTML = infoHTML + "<td class='occupied-homes'>Occupied Homes: ";
-				
-				//for (var i = 0; i < homes.length; i++) {
-				//	console.log(homes[i]);
-				//	infoHTML = infoHTML + "<div class='homes-year-"+ homes[1] +"'>" + homes[0] + "</div>";
-				//}
-				infoHTML = infoHTML + "<td>Population:" + infobarGroup['population'] + "</td>";
-			console.log(infobarGroup['population']);
-				infoHTML = infoHTML + "<td>EducationLevel</td>";
-				infoHTML = infoHTML + "<td>Race</td>";
-				infoHTML = infoHTML + "<td>Age</td>";
-				infoHTML = infoHTML + "<td>FamilyTypes</td>";
+				infoHTML = infoHTML + "<table><tr class='zipcode'><td>Zipcode</td><td>" + zipcode;
+				infoHTML = infoHTML + "</td></tr>";
+				infoHTML = infoHTML + "<tr class='occupied-homes'><td>Occupied Homes</td><td>" + infobarGroup['households'];
+				infoHTML = infoHTML + "</td></tr>";
+				infoHTML = infoHTML + "<tr class='population'><td>Population</td><td>" + infobarGroup['population'];
+				infoHTML = infoHTML + "</td></tr>";
+				infoHTML = infoHTML + "<tr class='medianAge'><td>MedianAge</td><td>" + infobarGroup['medianAge']
+				infoHTML = infoHTML + "</td></tr>";
+				infoHTML = infoHTML + "<tr class='pctUnemployed'><td>Percent Unemployed</td><td>" + infobarGroup['pctUnemployed']
+				infoHTML = infoHTML + "</td></tr>";
+				infoHTML = infoHTML + "<tr class='income'><td>Income</td><td>" + infobarGroup['income']
+				infoHTML = infoHTML + "</td></tr>";
+				infoHTML = infoHTML + "<tr class='householdSize'><td>Avg Household Size/td><td>" + infobarGroup['householdSize']
+				infoHTML = infoHTML + "</td></tr>";
+				infoHTML = infoHTML + "<tr class='medianHomeValue'><td>Median Home Value</td><td>" + infobarGroup['medianHomeValue]
+				infoHTML = infoHTML + "</td></tr>";
+				infoHTML = infoHTML + "<tr class='pctProjectedGrowth'><td>Projected Growth</td><td>" + infobarGroup['pctProjectedGrowth']
+				infoHTML = infoHTML + "</td></tr>";
+				infoHTML = infoHTML + "<tr class='pctIncomeGrowth'><td>Income Growth</td><td>" + infobarGroup['pctIncomeGrowth']
+				infoHTML = infoHTML + "</td></tr>";
 				infoHTML = infoHTML + "</table>";
 				zipDemographicsHTML[zipcode] = infoHTML;
 
