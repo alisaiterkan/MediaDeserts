@@ -404,15 +404,15 @@ if(zippolygon.length > 1) {
 
 				infoHTML = infoHTML + "<table><tr class='labels'><td>Zipcode</td><td>Occupied Homes</td><td>Population</td><td>MedianAge</td><td>Percent Unemployed</td><td>Income</td><td>Avg Household Size/td><td>Median Home Value</td><td>Projected Growth</td><td>Income Growth</td></tr>";
 				infoHTML = infoHTML + "<tr class='selected><td>" + zipcode + "</td>";
-				infoHTML = infoHTML + "<td>" + infobarGroup['households'];"</td>;
-				infoHTML = infoHTML + "<td>" + infobarGroup['population'];"</td>;
-				infoHTML = infoHTML + "<td>" + infobarGroup['medianAge'];"</td>;
-				infoHTML = infoHTML + "<td>" + infobarGroup['pctUnemployed'];"</td>;
-				infoHTML = infoHTML + "<td>" + infobarGroup['income'];"</td>;
-				infoHTML = infoHTML + "<td>" + infobarGroup['householdSize'];"</td>;
-				infoHTML = infoHTML + "<td>" + infobarGroup['medianHomeValue'];"</td>;
-				infoHTML = infoHTML + "<td>" + infobarGroup['pctProjectedGrowth'];"</td>;
-				infoHTML = infoHTML + "<td>" + infobarGroup['pctIncomeGrowth'];"</td>;
+				infoHTML = infoHTML + "<td>" + infobarGroup['households'] + "</td>";
+				infoHTML = infoHTML + "<td>" + infobarGroup['population'] + "</td>";
+				infoHTML = infoHTML + "<td>" + infobarGroup['medianAge'] + "</td>";
+				infoHTML = infoHTML + "<td>" + infobarGroup['pctUnemployed'] + "</td>";
+				infoHTML = infoHTML + "<td>" + infobarGroup['income'] + "</td>";
+				infoHTML = infoHTML + "<td>" + infobarGroup['householdSize'] + "</td>";
+				infoHTML = infoHTML + "<td>" + infobarGroup['medianHomeValue'] + "</td>";
+				infoHTML = infoHTML + "<td>" + infobarGroup['pctProjectedGrowth'] + "</td>";
+				infoHTML = infoHTML + "<td>" + infobarGroup['pctIncomeGrowth'] + "</td>";
 				infoHTML = infoHTML + "</table>";
 				zipDemographicsHTML[zipcode] = infoHTML;
 
