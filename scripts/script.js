@@ -410,11 +410,11 @@ if(zippolygon.length > 1) {
 				//	infoHTML = infoHTML + "<div class='homes-year-"+ homes[1] +"'>" + homes[0] + "</div>";
 				//}
 				infoHTML = infoHTML + "<td>Population:" + infobarGroup['population'] + "</td>";
-			console.log(infobarGroup['population'];
-				infoHTML = infoHTML + "<td>EducationLevel</td>"
-				infoHTML = infoHTML + "<td>Race</td>"
-				infoHTML = infoHTML + "<td>Age</td>"
-				infoHTML = infoHTML + "<td>FamilyTypes</td>"
+			console.log(infobarGroup['population']);
+				infoHTML = infoHTML + "<td>EducationLevel</td>";
+				infoHTML = infoHTML + "<td>Race</td>";
+				infoHTML = infoHTML + "<td>Age</td>";
+				infoHTML = infoHTML + "<td>FamilyTypes</td>";
 				infoHTML = infoHTML + "</table>";
 				zipDemographicsHTML[zipcode] = infoHTML;
 
