@@ -194,7 +194,7 @@ $(".open-link").click(function() {
 });
 
 $('#infotable').html(zipDemographicsHTML);
-$('#infotable').children('select').show();
+$('#infotable select').show();
 
 }
 
