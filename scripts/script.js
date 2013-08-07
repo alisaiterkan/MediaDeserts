@@ -395,22 +395,22 @@ if(zippolygon.length > 1) {
 				var i = 0;
 				var infoHTML = "";
 				var homes = [];
-
-				
+	
 				infobarGroup['population'] = $(this).children("population").text();
 				infobarGroup['medianAge'] = $(this).children("medianAge").text();
-				infobarGroup['pctBachelors'] = parseInt($(this).attr("pctBachelors"), 10);
-				infobarGroup['pctUnemployed'] = parseInt($(this).attr("pctUnemployed"), 10);
-				infobarGroup['income'] = parseInt($(this).attr("income"), 10);
-				infobarGroup['households'] = parseInt($(this).attr("households"), 10);
-				infobarGroup['householdSize'] = parseInt($(this).attr("householdSize"), 10);
-				infobarGroup['pctHousingOwned'] = parseInt($(this).attr("pctHousingOwned"), 10);
-				infobarGroup['pctHousingRented'] = parseInt($(this).attr("pctHousingRented"), 10);
-				infobarGroup['pctHousingVacant'] = parseInt($(this).attr("pctHousingVacant"), 10);
-				infobarGroup['medianHomeValue'] = parseInt($(this).attr("medianHomeValue"), 10);
-				infobarGroup['pctProjectedGrowth'] = parseInt($(this).attr("pctProjectedGrowth"), 10);
-				infobarGroup['pctHouseholdGrowth'] = parseInt($(this).attr("pctHouseholdGrowth"), 10);
-				infobarGroup['pctIncomeGrowth'] = parseInt($(this).attr("pctIncomeGrowth"), 10);
+				infobarGroup['pctBachelors'] = $(this).children("pctBachelors").text();
+				infobarGroup['pctUnemployed'] = $(this).children("pctUnemployed").text();
+				infobarGroup['income'] = $(this).children("income").text();
+				infobarGroup['households'] = $(this).children("households").text();
+				infobarGroup['householdSize'] = $(this).children("householdSize").text();
+				infobarGroup['pctHousingOwned'] = $(this).children("pctHousingOwned").text();
+				infobarGroup['pctHousingRented'] = $(this).children("pctHousingRented").text();
+				infobarGroup['pctHousingVacant'] = $(this).children("pctHousingVacant").text();
+				infobarGroup['medianHomeValue'] = $(this).children("medianHomeValue").text();
+				infobarGroup['pctProjectedGrowth'] = $(this).children("pctProjectedGrowth").text();
+				infobarGroup['pctHouseholdGrowth'] = $(this).children("pctHouseholdGrowth").text();
+				infobarGroup['pctIncomeGrowth'] = $(this).children("pctIncomeGrowth").text();
+
 
 
 
