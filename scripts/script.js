@@ -475,7 +475,7 @@ if(zippolygon.length > 1) {
 				infoHTML = infoHTML + "<th>Projected Growth</th><th>Household Growth</th><th>Income Growth</th></tr>";
 				
 				infoHTML = infoHTML + "<tr class='national'><td>National Average</td><td></td>";
-				infoHTML = infoHTML + "<td>311114482</td><td>116723555</td><td>37.43</td><td>27.72</td><td>11.14</td><td>26737.35<td>2.65</td><td>58.67</td><td>30.52</td><td>10.81</td><td>201407.61</td><td>0.73</td><td>0.75</td><td>2.28</td>"
+				infoHTML = infoHTML + "<td>311114482</td><td>116723555</td><td>37.43</td><td>27.72%</td><td>11.14%</td><td>$26737.35<td>2.65</td><td>58.67%</td><td>30.52%</td><td>10.81%</td><td>$201407.61</td><td>0.73%</td><td>0.75%</td><td>2.28%</td>"
 
 
 				infoHTML = infoHTML + "<tr class='selected'><td>" + zipcode + "</td>";
