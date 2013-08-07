@@ -69,7 +69,7 @@ $(document).ready(function() {
 	    	userState = visitor_region;
 	    	lat_lng = new google.maps.LatLng(visitor_lat, visitor_lon);
 		    $('#states-1 option[value="' + visitor_region + '"]').attr("selected", "selected");
-		    $(".states-selector select").multiselect("refresh");
+		    // $(".states-selector select").multiselect("refresh");
 	    }
 	} else {
 		console.log("Location Finding Failed")
