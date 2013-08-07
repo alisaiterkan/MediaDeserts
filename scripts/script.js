@@ -396,6 +396,7 @@ if(zippolygon.length > 1) {
 				var infoHTML = "";
 				var homes = [];
 	
+				infobarGroup['zipname'] = $(this).children("zipname").text();
 				infobarGroup['population'] = $(this).children("population").text();
 				infobarGroup['medianAge'] = $(this).children("medianAge").text();
 				infobarGroup['pctBachelors'] = $(this).children("pctBachelors").text();
@@ -471,12 +472,12 @@ if(zippolygon.length > 1) {
 
 				infoHTML = infoHTML + "<table><tr class='labels'><th>Zipcode</th><th>Occupied Homes</th><th>Population</th><th>MedianAge</th><th>Percent Unemployed</th><th>Income</th><th>Avg Household Size</th><th>Median Home Value</th><th>Projected Growth</th><th>Income Growth</th></tr>";
 				infoHTML = infoHTML + "<tr class='selected'><td>" + zipcode + "</td>";
+				infoHTML = infoHTML + "<td>" + infobarGroup['zipname'] + "</td>";
 				infoHTML = infoHTML + "<td>" + infobarGroup['households'] + "</td>";
 				infoHTML = infoHTML + "<td>" + infobarGroup['population'] + "</td>";
 				infoHTML = infoHTML + "<td>" + infobarGroup['medianAge'] + "</td>";
 				infoHTML = infoHTML + "<td>" + infobarGroup['pctUnemployed'] + "</td>";
 				infoHTML = infoHTML + "<td>" + infobarGroup['income'] + "</td>";
-				infoHTML = infoHTML + "<td>" + infobarGroup['householdSize'] + "</td>";
 				infoHTML = infoHTML + "<td>" + infobarGroup['medianHomeValue'] + "</td>";
 				infoHTML = infoHTML + "<td>" + infobarGroup['pctProjectedGrowth'] + "</td>";
 				infoHTML = infoHTML + "<td>" + infobarGroup['pctIncomeGrowth'] + "</td></tr>";
