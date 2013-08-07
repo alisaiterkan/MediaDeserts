@@ -403,7 +403,7 @@ if(zippolygon.length > 1) {
 				zipReportsHTML[zipcode] = htmlGroup;	
 
 				infoHTML = infoHTML + "<table><tr class='labels'><td>Zipcode</td><td>Occupied Homes</td><td>Population</td><td>MedianAge</td><td>Percent Unemployed</td><td>Income</td><td>Avg Household Size</td><td>Median Home Value</td><td>Projected Growth</td><td>Income Growth</td></tr>";
-				infoHTML = infoHTML + "<tr class='selected><td>" + zipcode + "</td>";
+				infoHTML = infoHTML + "<tr class='selected'><td>" + zipcode + "</td>";
 				infoHTML = infoHTML + "<td>" + infobarGroup['households'] + "</td>";
 				infoHTML = infoHTML + "<td>" + infobarGroup['population'] + "</td>";
 				infoHTML = infoHTML + "<td>" + infobarGroup['medianAge'] + "</td>";
