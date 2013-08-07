@@ -469,7 +469,7 @@ if(zippolygon.length > 1) {
 				//ADD STATS into htmlGroup HERE
 				zipReportsHTML[zipcode] = htmlGroup;	
 
-				infoHTML = infoHTML + "<table><tr class='labels'><td>Zipcode</td><td>Occupied Homes</td><td>Population</td><td>MedianAge</td><td>Percent Unemployed</td><td>Income</td><td>Avg Household Size</td><td>Median Home Value</td><td>Projected Growth</td><td>Income Growth</td></tr>";
+				infoHTML = infoHTML + "<table><tr class='labels'><th>Zipcode</th><th>Occupied Homes</th><th>Population</th><th>MedianAge</th><th>Percent Unemployed</th><th>Income</th><th>Avg Household Size</th><th>Median Home Value</th><th>Projected Growth</th><th>Income Growth</th></tr>";
 				infoHTML = infoHTML + "<tr class='selected'><td>" + zipcode + "</td>";
 				infoHTML = infoHTML + "<td>" + infobarGroup['households'] + "</td>";
 				infoHTML = infoHTML + "<td>" + infobarGroup['population'] + "</td>";
