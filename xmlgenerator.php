@@ -89,7 +89,7 @@ while($area = mysqli_fetch_array($circulationAreaResults)) {
 		echo "<response>\n";
 
 // SQL SELECT COMMAND
-$circulationAreaResults = mysqli_query($con,"SELECT circulationAreas.zipcode, circulationAreas.occupiedHomes, sundayCirculation, combinedSundayCirculation, geometry, demographics.name, demographics.population, demographics.medianAge, demographics.pctBachelors, demographics.pctUnemployed, demographics.income, demographics.households, demographics.householdSize, demographics.pctHousingOwned, demographics.pctHousingRented, demographics.pctHousingVacant, demographics.medianHomeValue, demographics.pctProjectedGrowth, demographics.pctHouseholdGrowth, demographics.pctIncomeGrowth FROM circulationAreas INNER JOIN zipcodes ON circulationAreas.zipcode = zipcodes.zipcode INNER JOIN demographics ON circulationAreas.zipcode = demographics.zipcode WHERE STATE='$state' GROUP BY zipcode ORDER BY circulationAreas.zipcode ASC;");
+$circulationAreaResults = mysqli_query($con,"SELECT circulationAreas.zipcode, circulationAreas.occupiedHomes, sundayCirculation, combinedSundayCirculation, zipcodes.geometry, demographics.name, demographics.population, demographics.medianAge, demographics.pctBachelors, demographics.pctUnemployed, demographics.income, demographics.households, demographics.householdSize, demographics.pctHousingOwned, demographics.pctHousingRented, demographics.pctHousingVacant, demographics.medianHomeValue, demographics.pctProjectedGrowth, demographics.pctHouseholdGrowth, demographics.pctIncomeGrowth FROM circulationAreas INNER JOIN zipcodes ON circulationAreas.zipcode = zipcodes.zipcode INNER JOIN demographics ON circulationAreas.zipcode = demographics.zipcode WHERE STATE='$state' GROUP BY zipcode ORDER BY circulationAreas.zipcode ASC;");
 
 while($area = mysqli_fetch_array($circulationAreaResults)) {
 
@@ -115,7 +115,7 @@ while($area = mysqli_fetch_array($circulationAreaResults)) {
 		echo "<area>\n";
 			echo "<zipcode>$zipcode</zipcode>\n";
 			echo "<geometry>\n";
-echo $geometry;
+			echo $geometry;
 			echo "</geometry>\n";
 			
 			echo "<zipname>$zipname</zipname>\n"
