@@ -18,26 +18,108 @@
 
 	var zipDemographicsHTML = [];
 
-$(document).ready(function() {
-// Defines the UI filters
-$("#circulation-selector").multiselect({
-	selectedText: "# of # selected",
-	minWidth: 'auto'
-}).multiselectfilter();
-$("#years-selector").multiselect({
-	selectedText: "# of # selected",
-	minWidth: 'auto'
-}).multiselectfilter();
-$("#publications-selector").multiselect({
-	selectedText: "# of # selected",
-	minWidth: 'auto'
-}).multiselectfilter();
-$("#states-selector").multiselect({
-	selectedText: "# of # selected",
+    function filterHTML(filterID, viewsOptions, statesOptions, yearsOptions, publicationsOptions) {
+	    return '<div class="filter-row cf" id="filter-'+filterID+'"><div class="views-selector cf"><select name="views-'+filterID+'" id="views-'+filterID+'">'+viewsOptions+'</select></div><div class="states-selector cf"><select name="states-'+filterID+'" id="states-'+filterID+'" multiple="" style="display: none;">'+statesOptions+'</select></div><div class="year-selector cf"><select name="years-'+filterID+'" id="years-'+filterID+'" multiple>'+yearsOptions+'</select></div><div class="publication-selector cf"><select name="publications-'+filterID+'" id="publications-'+filterID+'" multiple>"'+publicationsOptions+'"</select></div></div>';
+    }
+    
+    function declareMultiSelect() {
+$(".views-selector select").multiselect({
+	selectedText: "Filter By",
+	noneSelectedText: "Filter By",
 	minWidth: 'auto',
-	multiple: false,
-	selectedList: 4
+	multiple: false
 }).multiselectfilter();
+
+$(".states-selector select").multiselect({
+	selectedList: 1,
+	noneSelectedText: "States",
+	minWidth: 'auto',
+	multiple: false
+}).multiselectfilter();
+
+$(".year-selector select").multiselect({
+	selectedText: "Change over # years",
+	noneSelectedText: "Year",
+	minWidth: 'auto',
+	selectedList: 1,
+}).multiselectfilter();
+
+$(".publication-selector select").multiselect({
+	selectedText: "Publications (#)",
+	noneSelectedText: "Publications",
+	minWidth: 'auto'
+}).multiselectfilter();
+
+    }
+
+
+
+$(document).ready(function() {
+	    if(google.loader.ClientLocation != null)
+	{
+	    visitor_lat = google.loader.ClientLocation.latitude;
+	    visitor_lon = google.loader.ClientLocation.longitude;
+	    visitor_city = google.loader.ClientLocation.address.city;
+	    visitor_region = google.loader.ClientLocation.address.region;
+	    visitor_country = google.loader.ClientLocation.address.country;
+	    visitor_countrycode = google.loader.ClientLocation.address.country_code;
+	    console.log(visitor_city + " " + visitor_region + " " + visitor_country);
+	    $( "#loading-modal" ).html("<p>Welcome Visitor.</p><p>Loading: " + visitor_region + "</p>");
+	    if(visitor_country == "USA") {
+	    	userState = visitor_region;
+	    	lat_lng = new google.maps.LatLng(visitor_lat, visitor_lon);
+		    $('#states-1 option[value="' + visitor_region + '"]').attr("selected", "selected");
+	    }
+	} else {
+		console.log("Location Finding Failed")
+	}
+
+
+	    filterID = 2;
+		
+		viewsOptions = $(".views-selector select").html();
+	    statesOptions = $(".states-selector select").html();
+	    yearsOptions = $(".year-selector select").html();
+	    publicationsOptions = $(".publication-selector select").html();
+	    
+	    $('#add').click(function () {
+	    	$('.filters-row-containter').append(filterHTML(filterID, viewsOptions, statesOptions, yearsOptions, publicationsOptions));
+	    	declareMultiSelect();
+
+	    	filterID++; 
+		});
+		
+	    $('#remove').click(function () {
+	    	$('.filters-row-containter .filter-row:last-child ').remove();
+		});
+$("#demographics-metrics").multiselect({
+	selectedText: "Demographics Data (#)",
+	noneSelectedText: "Demographics Data",
+	minWidth: 'auto',
+	multiple: false
+}).multiselectfilter();	 
+   
+$("#outlet-metrics").multiselect({
+	selectedText: "Outlet Data (#)",
+	noneSelectedText: "Outlet Data",
+	minWidth: 'auto',
+	multiple: false
+}).multiselectfilter();	    
+
+declareMultiSelect();
+
+$(".views-selector select").change(function() {
+console.log('changed');
+ if($(this).val() == "geographicView" ) {
+	 $(this).parent().hide().removeClass("publicationView").addClass("geographicView");
+ }
+ if($(this).val() == "publicationView" ) {
+	 $(this).parent().hide().removeClass("geographicView").addClass("publicationView");
+ }
+});
+
+
+
 $(function() {
 
 	$( "#loading-modal" ).dialog({
@@ -56,24 +138,8 @@ $(function() {
     });
 
 });
-
-if(google.loader.ClientLocation)
-	{
-	    visitor_lat = google.loader.ClientLocation.latitude;
-	    visitor_lon = google.loader.ClientLocation.longitude;
-	    visitor_city = google.loader.ClientLocation.address.city;
-	    visitor_region = google.loader.ClientLocation.address.region;
-	    visitor_country = google.loader.ClientLocation.address.country;
-	    visitor_countrycode = google.loader.ClientLocation.address.country_code;
-	    console.log(visitor_country + " " + visitor_region);
-	    if(visitor_country == "USA") {
-	    	userState = visitor_region;
-	    	lat_lng = new google.maps.LatLng(visitor_lat, visitor_lon);
-		    $('#states-selector option[value="' + visitor_region + '"]').attr("selected", "selected");
-	    }
-	}
-
 });
+
 // function initialize is loaded towards the bottom on window load with this line:
 
 
