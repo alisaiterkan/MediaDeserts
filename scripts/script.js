@@ -395,25 +395,6 @@ if(zippolygon.length > 1) {
 				var i = 0;
 				var infoHTML = "";
 				var homes = [];
-	
-				infobarGroup['zipname'] = $(this).children("zipname").text();
-				infobarGroup['population'] = $(this).children("population").text();
-				infobarGroup['medianAge'] = $(this).children("medianAge").text();
-				infobarGroup['pctBachelors'] = $(this).children("pctBachelors").text();
-				infobarGroup['pctUnemployed'] = $(this).children("pctUnemployed").text();
-				infobarGroup['income'] = $(this).children("income").text();
-				infobarGroup['households'] = $(this).children("households").text();
-				infobarGroup['householdSize'] = $(this).children("householdSize").text();
-				infobarGroup['pctHousingOwned'] = $(this).children("pctHousingOwned").text();
-				infobarGroup['pctHousingRented'] = $(this).children("pctHousingRented").text();
-				infobarGroup['pctHousingVacant'] = $(this).children("pctHousingVacant").text();
-				infobarGroup['medianHomeValue'] = $(this).children("medianHomeValue").text();
-				infobarGroup['pctProjectedGrowth'] = $(this).children("pctProjectedGrowth").text();
-				infobarGroup['pctHouseholdGrowth'] = $(this).children("pctHouseholdGrowth").text();
-				infobarGroup['pctIncomeGrowth'] = $(this).children("pctIncomeGrowth").text();
-
-
-
 
 				$(thisRow).children('reports').children('report').each(function() {
 				var reportData = {};
@@ -470,13 +451,31 @@ if(zippolygon.length > 1) {
 				//ADD STATS into htmlGroup HERE
 				zipReportsHTML[zipcode] = htmlGroup;	
 
+
+				infobarGroup['zipname'] = $(this).children("zipname").text();
+				infobarGroup['population'] = $(this).children("population").text();
+				infobarGroup['medianAge'] = $(this).children("medianAge").text();
+				infobarGroup['pctBachelors'] = $(this).children("pctBachelors").text();
+				infobarGroup['pctUnemployed'] = $(this).children("pctUnemployed").text();
+				infobarGroup['income'] = $(this).children("income").text();
+				infobarGroup['households'] = $(this).children("households").text();
+				infobarGroup['householdSize'] = $(this).children("householdSize").text();
+				infobarGroup['pctHousingOwned'] = $(this).children("pctHousingOwned").text();
+				infobarGroup['pctHousingRented'] = $(this).children("pctHousingRented").text();
+				infobarGroup['pctHousingVacant'] = $(this).children("pctHousingVacant").text();
+				infobarGroup['medianHomeValue'] = $(this).children("medianHomeValue").text();
+				infobarGroup['pctProjectedGrowth'] = $(this).children("pctProjectedGrowth").text();
+				infobarGroup['pctHouseholdGrowth'] = $(this).children("pctHouseholdGrowth").text();
+				infobarGroup['pctIncomeGrowth'] = $(this).children("pctIncomeGrowth").text();
+
+
 				infoHTML = infoHTML + "<table><tr class='labels'><th>Zipcode</th><th>Name</th><th>Population</th><th>Households</th><th>MedianAge</th>";
 				infoHTML = infoHTML + "<th>PercentBachelors</th><th>PercentUnemployed</th><th>Income</th><th>HouseholdSize</th>";
 				infoHTML = infoHTML + "<th>PercentHousingOwned</th><th>PercentHousingRented</th><th>PercentHousingVacant</th><th>Median Home Value</th>";
 				infoHTML = infoHTML + "<th>Projected Growth</th><th>HouseholdGrowth</th><th>Income Growth</th></tr>";
 				
-				//infoHTML = infoHTML + "<tr class='national'><td>National Average</td><td></td>";
-				//infoHTML = infoHTML + "<td>"
+				infoHTML = infoHTML + "<tr class='national'><td>National Average</td><td></td>";
+				infoHTML = infoHTML + "<td>311114482</td><td>116723555</td><td>37.43</td><td>27.72</td><td>11.14</td><td>26737.35<td>2.65</td><td>58.67</td><td>30.52</td><td>10.81</td><td>201407.61</td><td>0.73</td><td>0.75</td><td>2.28</td>"
 
 
 				infoHTML = infoHTML + "<tr class='selected'><td>" + zipcode + "</td>";
