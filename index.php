@@ -19,14 +19,6 @@ include_once("/home/mediadeserts/secure/connection.php");
 	  <header class="cf">
 		  	<div id="logo">
 			  	<img src="logo.png" height="140" alt="Media Deserts: Communities that lack access to fresh local news and information" title="Media Deserts: Communities that lack access to fresh local news and information" style="max-width:100%;">
-			  	<nav>
-				  	<ul>
-					  	<li>Learn More</li>
-					  	<li>Blog</li>
-					  	<li>Contact</li>
-				  	</ul>
-				  	
-			  	</nav>
 		  	</div>
 		  	<div id="forms">
 		  		
@@ -146,7 +138,17 @@ include_once("/home/mediadeserts/secure/connection.php");
 		  		
 		  	</div>
 	  </header>
-	  
+	<nav class="cf">
+	  	<ul class="left-nav">
+		  	<li>Learn More</li>
+		  	<li>Blog</li>
+		  	<li>Contact</li>
+	  	</ul>
+	  	<div class="right-nav">
+		  	<input type="button" name="refreshmap" id="refreshmap" value="Update Map">
+	  	</div>
+	</nav>
+
 	  <section id="content" class="cf">
 		  		<div id="loadingtext">Loading...</div>
 		  		
