@@ -470,11 +470,16 @@ if(zippolygon.length > 1) {
 				//ADD STATS into htmlGroup HERE
 				zipReportsHTML[zipcode] = htmlGroup;	
 
-				infoHTML = infoHTML + "<table><tr class='labels'><th>Zipcode</th><th>Name</th><th>Occupied Homes</th><th>Population</th><th>MedianAge</th><th>Percent Unemployed</th><th>Income</th><th>Median Home Value</th><th>Projected Growth</th><th>Income Growth</th></tr>";
+				infoHTML = infoHTML + "<table><tr class='labels'><th>Zipcode</th><th>Name</th><th>Population</th><th>Households</th><th>MedianAge</th><th>Percent Bachelors</th><th>Percent Unemployed</th><th>Income</th><th>Households</th><th>HouseholdSize</th><th>PercentHousingOwned</th><th>PercentHousingRented</th><th>PercentHousingVacant</th><th>Median Home Value</th><th>Projected Growth</th><th>HouseholdGrowth</th><th>Income Growth</th></tr>";
+				
+				//infoHTML = infoHTML + "<tr class='national'><td>National Average</td><td></td>";
+				//infoHTML = infoHTML + "<td>"
+
+
 				infoHTML = infoHTML + "<tr class='selected'><td>" + zipcode + "</td>";
 				infoHTML = infoHTML + "<td>" + infobarGroup['zipname'] + "</td>";
-				infoHTML = infoHTML + "<td>" + infobarGroup['households'] + "</td>";
 				infoHTML = infoHTML + "<td>" + infobarGroup['population'] + "</td>";
+				infoHTML = infoHTML + "<td>" + infobarGroup['households'] + "</td>";
 				infoHTML = infoHTML + "<td>" + infobarGroup['medianAge'] + "</td>";
 				infoHTML = infoHTML + "<td>" + infobarGroup['pctUnemployed'] + "</td>";
 				infoHTML = infoHTML + "<td>" + infobarGroup['income'] + "</td>";
