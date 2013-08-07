@@ -117,8 +117,7 @@ while($area = mysqli_fetch_array($circulationAreaResults)) {
 			echo "<geometry>\n";
 			echo $geometry;
 			echo "</geometry>\n";
-			
-			echo "<zipname>$zipname</zipname>\n"
+			echo "<zipname>$zipname</zipname>\n";
 			echo "<population>$population</population>\n";
 			echo "<medianAge>$medianAge</medianAge>\n";
 			echo "<pctBachelors>$pctBachelors</pctBachelors>\n";
