@@ -55,6 +55,7 @@ $(".publication-selector select").multiselect({
 
 
 $(document).ready(function() {
+
 	    if(google.loader.ClientLocation != null)
 	{
 	    visitor_lat = google.loader.ClientLocation.latitude;
@@ -193,7 +194,7 @@ $(".open-link").click(function() {
 });
 
 $('#infotable').html(zipDemographicsHTML);
-
+$('#infotable').children('select').show();
 
 }
 
@@ -472,9 +473,13 @@ if(zippolygon.length > 1) {
 				infoHTML = infoHTML + "<table><tr class='labels'><th>Zipcode</th>";
 				infoHTML = infoHTML + "<th>Name</th>";
 				infoHTML = infoHTML + "<th><select name='demographics-1' id='demographics-1'><option value='population'>Population</option><option value='households'>households</option><option value='medianAge'>medianAge</option><option value='pctBachelors'>pctBachelors</option><option value='pctUnemployed'>pctUnemployed</option><option value='income'>income</option><option value='householdSize'>householdSize</option><option value='pctHousingOwned'>pctHousingOwned</option><option value='pctHousingRented'>pctHousingRented</option><option value='pctHousingVacant'>pctHousingVacant</option><option value='medianHomeValue'>medianHomeValue</option><option value='pctProjectedGrowth'>pctProjectedGrowth</option><option value='pctHouseholdGrowth'>pctHouseholdGrowth</option><option value='pctIncomeGrowth'>pctIncomeGrowth</option></select></th>";
+
 				infoHTML = infoHTML + "<th><select name='demographics-2' id='demographics-2'><option value='population'>Population</option><option value='households'>households</option><option value='medianAge'>medianAge</option><option value='pctBachelors'>pctBachelors</option><option value='pctUnemployed'>pctUnemployed</option><option value='income'>income</option><option value='householdSize'>householdSize</option><option value='pctHousingOwned'>pctHousingOwned</option><option value='pctHousingRented'>pctHousingRented</option><option value='pctHousingVacant'>pctHousingVacant</option><option value='medianHomeValue'>medianHomeValue</option><option value='pctProjectedGrowth'>pctProjectedGrowth</option><option value='pctHouseholdGrowth'>pctHouseholdGrowth</option><option value='pctIncomeGrowth'>pctIncomeGrowth</option></select></th>";
+
 				infoHTML = infoHTML + "<th><select name='demographics-3' id='demographics-3'><option value='population'>Population</option><option value='households'>households</option><option value='medianAge'>medianAge</option><option value='pctBachelors'>pctBachelors</option><option value='pctUnemployed'>pctUnemployed</option><option value='income'>income</option><option value='householdSize'>householdSize</option><option value='pctHousingOwned'>pctHousingOwned</option><option value='pctHousingRented'>pctHousingRented</option><option value='pctHousingVacant'>pctHousingVacant</option><option value='medianHomeValue'>medianHomeValue</option><option value='pctProjectedGrowth'>pctProjectedGrowth</option><option value='pctHouseholdGrowth'>pctHouseholdGrowth</option><option value='pctIncomeGrowth'>pctIncomeGrowth</option></select></th>";
+
 				infoHTML = infoHTML + "<th><select name='demographics-4' id='demographics-4'><option value='population'>Population</option><option value='households'>households</option><option value='medianAge'>medianAge</option><option value='pctBachelors'>pctBachelors</option><option value='pctUnemployed'>pctUnemployed</option><option value='income'>income</option><option value='householdSize'>householdSize</option><option value='pctHousingOwned'>pctHousingOwned</option><option value='pctHousingRented'>pctHousingRented</option><option value='pctHousingVacant'>pctHousingVacant</option><option value='medianHomeValue'>medianHomeValue</option><option value='pctProjectedGrowth'>pctProjectedGrowth</option><option value='pctHouseholdGrowth'>pctHouseholdGrowth</option><option value='pctIncomeGrowth'>pctIncomeGrowth</option></select></th>";
+
 				infoHTML = infoHTML + "<th><select name='demographics-5' id='demographics-5'><option value='population'>Population</option><option value='households'>households</option><option value='medianAge'>medianAge</option><option value='pctBachelors'>pctBachelors</option><option value='pctUnemployed'>pctUnemployed</option><option value='income'>income</option><option value='householdSize'>householdSize</option><option value='pctHousingOwned'>pctHousingOwned</option><option value='pctHousingRented'>pctHousingRented</option><option value='pctHousingVacant'>pctHousingVacant</option><option value='medianHomeValue'>medianHomeValue</option><option value='pctProjectedGrowth'>pctProjectedGrowth</option><option value='pctHouseholdGrowth'>pctHouseholdGrowth</option><option value='pctIncomeGrowth'>pctIncomeGrowth</option></select></th>";
 				infoHTML = infoHTML + "</tr>";
 
