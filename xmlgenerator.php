@@ -89,12 +89,13 @@ while($area = mysqli_fetch_array($circulationAreaResults)) {
 		echo "<response>\n";
 
 // SQL SELECT COMMAND
-$circulationAreaResults = mysqli_query($con,"SELECT circulationAreas.zipcode, circulationAreas.occupiedHomes, sundayCirculation, combinedSundayCirculation, geometry, demographics.population, demographics.medianAge, demographics.pctBachelors, demographics.pctUnemployed, demographics.income, demographics.households, demographics.householdSize, demographics.pctHousingOwned, demographics.pctHousingRented, demographics.pctHousingVacant, demographics.medianHomeValue, demographics.pctProjectedGrowth, demographics.pctHouseholdGrowth, demographics.pctIncomeGrowth FROM circulationAreas INNER JOIN zipcodes ON circulationAreas.zipcode = zipcodes.zipcode INNER JOIN demographics ON circulationAreas.zipcode = demographics.zipcode WHERE STATE='$state' GROUP BY zipcode ORDER BY circulationAreas.zipcode ASC;");
+$circulationAreaResults = mysqli_query($con,"SELECT circulationAreas.zipcode, circulationAreas.occupiedHomes, sundayCirculation, combinedSundayCirculation, geometry, demographics.name, demographics.population, demographics.medianAge, demographics.pctBachelors, demographics.pctUnemployed, demographics.income, demographics.households, demographics.householdSize, demographics.pctHousingOwned, demographics.pctHousingRented, demographics.pctHousingVacant, demographics.medianHomeValue, demographics.pctProjectedGrowth, demographics.pctHouseholdGrowth, demographics.pctIncomeGrowth FROM circulationAreas INNER JOIN zipcodes ON circulationAreas.zipcode = zipcodes.zipcode INNER JOIN demographics ON circulationAreas.zipcode = demographics.zipcode WHERE STATE='$state' GROUP BY zipcode ORDER BY circulationAreas.zipcode ASC;");
 
 while($area = mysqli_fetch_array($circulationAreaResults)) {
 
 //insert here
 		$zipcode = $area['zipcode'];
+		$zipname = $area['name'];
 		$population = $area['population'];
 		$medianAge = $area['medianAge'];
 		$pctBachelors = $area['pctBachelors'];
@@ -117,6 +118,7 @@ while($area = mysqli_fetch_array($circulationAreaResults)) {
 echo $geometry;
 			echo "</geometry>\n";
 			
+			echo "<zipname>$zipname</zipname>\n"
 			echo "<population>$population</population>\n";
 			echo "<medianAge>$medianAge</medianAge>\n";
 			echo "<pctBachelors>$pctBachelors</pctBachelors>\n";
