@@ -590,6 +590,7 @@ if(zippolygon.length > 1) {
 		zoom: 7,
 		center: lat_lng,
 		mapTypeId: 'map_style',
+		mapTypeControl: false,
 		mapTypeControlOptions: {
 			mapTypeIds: ['map_style']
 		}
