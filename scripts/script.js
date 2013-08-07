@@ -476,6 +476,7 @@ if(zippolygon.length > 1) {
 				infoHTML = infoHTML + "<th><select name='demographics-3' id='demographics-3'><option value='population'>Population</option><option value='households'>households</option><option value='medianAge'>medianAge</option><option value='pctBachelors'>pctBachelors</option><option value='pctUnemployed'>pctUnemployed</option><option value='income'>income</option><option value='householdSize'>householdSize</option><option value='pctHousingOwned'>pctHousingOwned</option><option value='pctHousingRented'>pctHousingRented</option><option value='pctHousingVacant'>pctHousingVacant</option><option value='medianHomeValue'>medianHomeValue</option><option value='pctProjectedGrowth'>pctProjectedGrowth</option><option value='pctHouseholdGrowth'>pctHouseholdGrowth</option><option value='pctIncomeGrowth'>pctIncomeGrowth</option></select></th>";
 				infoHTML = infoHTML + "<th><select name='demographics-4' id='demographics-4'><option value='population'>Population</option><option value='households'>households</option><option value='medianAge'>medianAge</option><option value='pctBachelors'>pctBachelors</option><option value='pctUnemployed'>pctUnemployed</option><option value='income'>income</option><option value='householdSize'>householdSize</option><option value='pctHousingOwned'>pctHousingOwned</option><option value='pctHousingRented'>pctHousingRented</option><option value='pctHousingVacant'>pctHousingVacant</option><option value='medianHomeValue'>medianHomeValue</option><option value='pctProjectedGrowth'>pctProjectedGrowth</option><option value='pctHouseholdGrowth'>pctHouseholdGrowth</option><option value='pctIncomeGrowth'>pctIncomeGrowth</option></select></th>";
 				infoHTML = infoHTML + "<th><select name='demographics-5' id='demographics-5'><option value='population'>Population</option><option value='households'>households</option><option value='medianAge'>medianAge</option><option value='pctBachelors'>pctBachelors</option><option value='pctUnemployed'>pctUnemployed</option><option value='income'>income</option><option value='householdSize'>householdSize</option><option value='pctHousingOwned'>pctHousingOwned</option><option value='pctHousingRented'>pctHousingRented</option><option value='pctHousingVacant'>pctHousingVacant</option><option value='medianHomeValue'>medianHomeValue</option><option value='pctProjectedGrowth'>pctProjectedGrowth</option><option value='pctHouseholdGrowth'>pctHouseholdGrowth</option><option value='pctIncomeGrowth'>pctIncomeGrowth</option></select></th>";
+				infoHTML = infoHTML + "</tr>";
 
 
 /*
@@ -503,9 +504,10 @@ if(zippolygon.length > 1) {
 				infoHTML = infoHTML + "<td>" + infobarGroup['pctProjectedGrowth'] + "%</td>";
 				infoHTML = infoHTML + "<td>" + infobarGroup['pctHouseholdGrowth'] + "%</td>";
 				infoHTML = infoHTML + "<td>" + infobarGroup['pctIncomeGrowth'] + "%</td></tr>";
+*/
 				infoHTML = infoHTML + "</table>";
 				zipDemographicsHTML[zipcode] = infoHTML;
-*/
+
 
 
 
