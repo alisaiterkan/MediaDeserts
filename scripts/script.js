@@ -470,7 +470,10 @@ if(zippolygon.length > 1) {
 				//ADD STATS into htmlGroup HERE
 				zipReportsHTML[zipcode] = htmlGroup;	
 
-				infoHTML = infoHTML + "<table><tr class='labels'><th>Zipcode</th><th>Name</th><th>Population</th><th>Households</th><th>MedianAge</th><th>Percent Bachelors</th><th>Percent Unemployed</th><th>Income</th><th>Households</th><th>HouseholdSize</th><th>PercentHousingOwned</th><th>PercentHousingRented</th><th>PercentHousingVacant</th><th>Median Home Value</th><th>Projected Growth</th><th>HouseholdGrowth</th><th>Income Growth</th></tr>";
+				infoHTML = infoHTML + "<table><tr class='labels'><th>Zipcode</th><th>Name</th><th>Population</th><th>Households</th><th>MedianAge</th>";
+				infoHTML = infoHTML + "<th>PercentBachelors</th><th>PercentUnemployed</th><th>Income</th><th>HouseholdSize</th>";
+				infoHTML = infoHTML + "<th>PercentHousingOwned</th><th>PercentHousingRented</th><th>PercentHousingVacant</th><th>Median Home Value</th>";
+				infoHTML = infoHTML + "<th>Projected Growth</th><th>HouseholdGrowth</th><th>Income Growth</th></tr>";
 				
 				//infoHTML = infoHTML + "<tr class='national'><td>National Average</td><td></td>";
 				//infoHTML = infoHTML + "<td>"
