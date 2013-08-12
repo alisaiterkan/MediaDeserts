@@ -1,3 +1,4 @@
+	//Set the state to RI by default
 	var userState = "RI";
 	
 	var chosenState = null;
@@ -13,37 +14,51 @@
 	var zippolygon = [];
 	// var zipcoords defines the array to hold all of the coordinates data   
 	var zipcoords = [];
-
+	
 	var zipReportsHTML = [];
 
 	var zipDemographicsHTML = [];
 
+/*Purpose: Add new filter 
+ *Parameters:
+ *	filterID, the filter's ID
+ *	viewOptions, selected view
+ *	statesOptions, selected state(s)
+ *	yearsOptions, selected year(s)
+ *	publicationsOptions, selected publication(s)
+ *Returns: the HTML for the new filter
+ */
     function filterHTML(filterID, viewsOptions, statesOptions, yearsOptions, publicationsOptions) {
 	    return '<div class="filter-row cf" id="filter-'+filterID+'"><div class="views-selector cf"><select name="views-'+filterID+'" id="views-'+filterID+'">'+viewsOptions+'</select></div><div class="states-selector cf"><select name="states-'+filterID+'" id="states-'+filterID+'" multiple="" style="display: none;">'+statesOptions+'</select></div><div class="year-selector cf"><select name="years-'+filterID+'" id="years-'+filterID+'" multiple>'+yearsOptions+'</select></div><div class="publication-selector cf"><select name="publications-'+filterID+'" id="publications-'+filterID+'" multiple>"'+publicationsOptions+'"</select></div></div>';
     }
     
+/*Purpose: Make the multiple-select options in the filters work
+ *Parameters: none
+ *Returns: Nothing
+ */
     function declareMultiSelect() {
+//Geographic Views
 $(".views-selector select").multiselect({
 	selectedText: "Filter By",
 	noneSelectedText: "Filter By",
 	minWidth: 'auto',
 	multiple: false
 }).multiselectfilter();
-
+//States
 $(".states-selector select").multiselect({
 	selectedList: 1,
 	noneSelectedText: "States",
 	minWidth: 'auto',
 	multiple: false
 }).multiselectfilter();
-
+//Years
 $(".year-selector select").multiselect({
 	selectedText: "Change over # years",
 	noneSelectedText: "Year",
 	minWidth: 'auto',
 	selectedList: 1,
 }).multiselectfilter();
-
+//Publications
 $(".publication-selector select").multiselect({
 	selectedText: "Publications (#)",
 	noneSelectedText: "Publications",
@@ -53,8 +68,11 @@ $(".publication-selector select").multiselect({
     }
 
 
-
-$(document).ready(function() {
+//When the page has loaded:
+$(document).ready(
+	
+	//Just ask Borno
+	function() {
 	$("#demographics-1").change(function(){
 
 		var scootaloo = $(this).val();
@@ -71,9 +89,11 @@ $(document).ready(function() {
 
 
 
-});
+	});
+	    //IF we have the user's location
 	    if(google.loader.ClientLocation != null)
 	{
+	    //Load the visitor's location if in the USA
 	    visitor_lat = google.loader.ClientLocation.latitude;
 	    visitor_lon = google.loader.ClientLocation.longitude;
 	    visitor_city = google.loader.ClientLocation.address.city;
@@ -92,52 +112,57 @@ $(document).ready(function() {
 		console.log("Location Finding Failed")
 	}
 
-
+	//Setting up a new filter
 	    filterID = 2;
 		
 		viewsOptions = $(".views-selector select").html();
 	    statesOptions = $(".states-selector select").html();
 	    yearsOptions = $(".year-selector select").html();
 	    publicationsOptions = $(".publication-selector select").html();
-	    
+	    //Add the filter to the HTML
 	    $('#add').click(function () {
 	    	$('.filters-row-containter').append(filterHTML(filterID, viewsOptions, statesOptions, yearsOptions, publicationsOptions));
 	    	declareMultiSelect();
-
+		//prepare ID for the next filter
 	    	filterID++; 
 		});
-		
+	//To remove a filter
 	    $('#remove').click(function () {
 	    	$('.filters-row-containter .filter-row:last-child ').remove();
 		});
+//Set up multi-select capabilities
+//demographics 
 $("#demographics-metrics").multiselect({
 	selectedText: "Demographics Data (#)",
 	noneSelectedText: "Demographics Data",
 	minWidth: 'auto',
 	multiple: false
 }).multiselectfilter();	 
-   
+//outlet data
 $("#outlet-metrics").multiselect({
 	selectedText: "Outlet Data (#)",
 	noneSelectedText: "Outlet Data",
 	minWidth: 'auto',
 	multiple: false
 }).multiselectfilter();	    
-
+//set multiselect
 declareMultiSelect();
 
+//Switching between views:
 $(".views-selector select").change(function() {
 console.log('changed');
+//switching to geographic
  if($(this).val() == "geographicView" ) {
 	 $(this).parent().hide().removeClass("publicationView").addClass("geographicView");
  }
+//switching to publication
  if($(this).val() == "publicationView" ) {
 	 $(this).parent().hide().removeClass("geographicView").addClass("publicationView");
  }
 });
 
 
-
+//When the page is loading, use the loading module
 $(function() {
 
 	$( "#loading-modal" ).dialog({
@@ -158,13 +183,9 @@ $(function() {
 });
 });
 
-// function initialize is loaded towards the bottom on window load with this line:
-
-
-
 //google.maps.event.addDomListener(window, "load", initialize);   
 
-
+//When a polygon is moused over, highlight the edge
 function mouseoverPolygon(zipCode){
 	if(currentpolygon !== zipCode) {
 	zipCode.setOptions({
@@ -174,6 +195,7 @@ function mouseoverPolygon(zipCode){
 			});
 			}
 }
+//when the mouse leaves, undo highlighting
 function mouseoutPolygon(zipCode){
 	if(currentpolygon !== zipCode) {
 	zipCode.setOptions({
@@ -183,6 +205,7 @@ function mouseoutPolygon(zipCode){
 			});
 			}
 }
+//When the polygon is clicked
 function clickPolygon(zipCode,  zipReportsHTML, zipDemographicsHTML){
 	if(currentpolygon !== null) {
 	currentpolygon.setOptions({
@@ -195,34 +218,39 @@ function clickPolygon(zipCode,  zipReportsHTML, zipDemographicsHTML){
 	$('#infotable').html("Click on a zipcode to see dempographics information");
 }
 	currentpolygon = zipCode;
+	//Make polygon bolder
 	zipCode.setOptions({
 				strokeOpacity: 1,
 				strokeWeight: 2,
 				fillOpacity: 1
 			});
-
+//Set sidebar info to the reportsHTML for this zip code
 $('#sidebar').html(zipReportsHTML);
+//Set availability of report information
 $(".open-link").click(function() {
    	$(".open-link-status").text('+');
    	$(".newspaper-content").addClass('hidden');
 	$(this).siblings(".newspaper-content").removeClass('hidden');
 	$(this).children(".open-link-status").text('-');
 });
-
+//Set the information table at the bottom of the page with demographics info
 $('#infotable').html(zipDemographicsHTML);
 $('#infotable select').show();
 
 }
 
+//Starting up!
 function initialize() {
 geocoder = new google.maps.Geocoder();
 
+//Oopen the loading module while changing
 $("#states-selector").change( function() {
   	$('body').addClass("loading"); $( "#loading-modal" ).dialog( "open" );
 
   	chosenState = this.value;
 console.log(chosenState);
 
+//request state info
 $.ajax({
   type: "POST",
   url: "xmlgenerator.php",
@@ -230,6 +258,7 @@ $.ajax({
   }
 }).done(function( data ) {
 
+//center the map on the chosen place
 geocoder.geocode( {'address' : chosenState}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
     console.log(results[0].geometry.location);
@@ -251,6 +280,7 @@ ajaxCall(data);
 
 
 });
+//Request publication data
 $("#publications-selector").change( function() {
   
 $.ajax({
@@ -274,7 +304,7 @@ ajaxCall(data);
 
 });
 	$('body').addClass("loading"); $( "#loading-modal" ).dialog( "open" );
-
+//Request data for user-chosen state
 $.ajax({
   type: "POST",
   url: "xmlgenerator.php",
@@ -288,7 +318,6 @@ function ajaxCall(data) {
 
 if(zippolygon.length > 1) {
 }
-	// var zippolygon defines the array to hold all of the polygons   
 
 			// LOOP for each of the circulation areas (children of the response)  
 			$(data).children('response').children('area').each(function() {
@@ -404,6 +433,7 @@ if(zippolygon.length > 1) {
 					fillColor: color,
 					fillOpacity: 0.70
 				});
+				//Put the polygon on the map
 				zippolygon[zipcode].setMap(map);
 				
 				var reportGroup = [];
@@ -535,7 +565,7 @@ if(zippolygon.length > 1) {
 
 
 								
-
+				//Mouse interaction listeners
 				google.maps.event.addDomListener(zippolygon[zipcode], "mouseover", function(){
 					mouseoverPolygon(zippolygon[zipcode])})
 				google.maps.event.addDomListener(zippolygon[zipcode], "mouseout", function(){
