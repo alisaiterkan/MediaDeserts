@@ -188,10 +188,12 @@ include_once("/home/mediadeserts/secure/connection.php");
 	<nav class="cf">
 		<!--INFORMATION LINKS-->
 	  	<ul class="left-nav">
-		  	<li>Learn More</li>
-		  	<li>Blog</li>
-		  	<li>Contact</li>
+			<!--WHEN CLICKED ON, NEED TO OPEN THEIR DIVISIONS/LINK/SHADOWBOX-->
+		  	<li><a href="about.html" rel="shadowbox;height=300;width=300">Learn More</a></li>
+		  	<li><a href="blog.html" rel="shadowbox;height=300;width=300">Blog</a></li>
+		  	<li><a href="contact.html" rel="shadowbox;height=300;width=300">Contact</a></li>
 	  	</ul>
+
 		<!--REFRESH MAP OPTION-->
 	  	<div class="right-nav">
 		  	<input type="button" name="refreshmap" id="refreshmap" value="Update Map">
