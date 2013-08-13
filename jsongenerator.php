@@ -8,8 +8,14 @@ Last Modified Monday, August 12th 2013
 <?
 // Borno says hi
 
+
+
 //Secure connection to the db that users can't abuse
 include_once("/home/mediadeserts/secure/connection.php");
+
+/*SUPER DUPER MEGA IMPORTANT
+ *Select command to find MAX and MIN values for stats
+ */
 
 //If user has selected a state, use that one
 if(isset($_POST['state'])) {
@@ -119,7 +125,7 @@ if($geoview == "zipcode") {
 
 $json = array();
 
-For each area object
+//For each area object
 while($area = mysqli_fetch_array($circulationAreaResults)) {
 	  $areaJSON = array();
 	//Make list of zip codes
@@ -166,8 +172,8 @@ while($area = mysqli_fetch_array($circulationAreaResults)) {
 	  // stats
 	  $stats = array();
 
-	  $stats['numberOFNewspapers'] = "color value";
-	  $stats['closetNewspaper'] = "color value";
+	  $stats['numberOFNewspapers'] = setColor("percent", false);
+	  $stats['closestNewspaper'] = "color value";
 	  $stats['sundayCirculationPCT'] = "color value";
 	  $stats['dailyCirculationPCT'] = "color value";
 	  $stats['combinedDailyPCT'] = "color value";
@@ -191,9 +197,16 @@ while($area = mysqli_fetch_array($circulationAreaResults)) {
 //Put the JSON info into the html
  echo json_encode($json);
 } elseif($geoview == "state") {
-
+	
 	$states = mysqli_query($con,"SELECT * FROM states;");
-
-
+	$json = array();
+	while($area = mysqli_fetch_array($states)) {
+		//Make list of state names
+	  	$areaJSON['name'] = $area['name'];
+//List of geometries
+	  $areaJSON['geometry'] = processGeometry($area['geometry']);
+	  $zipcode = $area['zipcode'];
+	  $newspapers = array();
+	}
 }
  ?>
