@@ -118,7 +118,7 @@ if(strpos($geometry,'<innerBoundaryIs><LinearRing><coordinates>') == true) {
 header('Content-Type: application/json');
 
 
-//If the selected geographical view is zip codesr
+//If the selected geographical view is zip codes
 if($geoview == "zipcode") {
 	//Get the zip code information in the selected state, in ascending zip code order
 	$circulationAreaResults = mysqli_query($con,"SELECT circulationAreas.zipcode, circulationAreas.occupiedHomes, sundayCirculation, combinedSundayCirculation, geometry FROM circulationAreas INNER JOIN zipcodes ON circulationAreas.zipcode = zipcodes.zipcode INNER JOIN demographics ON circulationAreas.zipcode = demographics.zipcode  WHERE circulationAreas.state='$state' GROUP BY zipcode ORDER BY circulationAreas.zipcode ASC;");
@@ -198,15 +198,32 @@ while($area = mysqli_fetch_array($circulationAreaResults)) {
  echo json_encode($json);
 } elseif($geoview == "state") {
 	
-	$states = mysqli_query($con,"SELECT * FROM states;");
+	$statesList = mysqli_query($con,"SELECT name, abbreviation, polygon, combinedDaily, combinedSunday, FROM states ORDER BY states.abbreviation ASC;");
+	$states
 	$json = array();
-	while($area = mysqli_fetch_array($states)) {
+	while($area = mysqli_fetch_array($statesList)) {
+		$areaJSON = array();
 		//Make list of state names
 	  	$areaJSON['name'] = $area['name'];
-//List of geometries
-	  $areaJSON['geometry'] = processGeometry($area['geometry']);
-	  $zipcode = $area['zipcode'];
-	  $newspapers = array();
+		//List of geometries
+		$areaJSON['polygon'] = processGeometry($area['polygon']);
+		//Abbreviation
+		$areaJSON['abbreviation'] = $area['abbreviation'];
+		//Daily circulations
+		$areaJSON['combinedDaily'] = $area['combinedDaily'];
+		//Sunday Circulations
+		$areaJSON['combinedSunday'] = $area['combinedSunday'];
+		//Total occupied homes:
+		//!! Will this work out?
+		$areaJSON['occupiedHomes'] = mysqli_query($con, "SELECT SUM( occupiedHomesAvg ) FROM 				(SELECT state, zipcode, AVG( occupiedHomes ) AS occupiedHomesAvg FROM 				`circulationAreas` GROUP BY zipcode, fromReport) AS avgHomesPerZip GROUP BY state 				ORDER BY state ASC;");
+		//Percent circulation by Sunday distribution
+		$areaJSON['sundayCirculationPct']= $areaJSON['combinedSunday']/$areaJSON['occupiedHomes'];
+
+		// stats
+		$stats = array();
+		//Polygon color based on Sunday circulation
+		$stats['sundayColor'] = setColor($areaJSON['sundayCirculationPct'], false);
+		$areaJSON['stats'] = $stats;
 	}
 }
  ?>
